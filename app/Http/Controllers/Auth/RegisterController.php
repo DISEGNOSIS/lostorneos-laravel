@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/my-account';
 
     /**
      * Create a new controller instance.
@@ -67,9 +67,9 @@ class RegisterController extends Controller
     {
         $request = app('request');
         if($request->hasFile('avatar')) {
-            $path = $request->file('avatar'->storeAs('public/img/usr'));
+            $path = $request->file('avatar'->storeAs('public/img/avatar'));
         } else {
-            $path = '/images/default';
+            $path = '/images/avatar/default.jpg';
         }
         return User::create([
             'username' => $data['username'],

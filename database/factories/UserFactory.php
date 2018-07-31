@@ -1,6 +1,8 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\User;
+use App\Country;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,13 +15,16 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(User::class, function (Faker $faker) {
+    $totalCountries = Country::all()->count();
     return [
+        'name' => $faker->name($gender = null),
         'username' => $faker->username,
-        'email' => $faker->unique()->safeEmail,
+        'email' => $faker->safeEmail,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-        'country' => $faker->country,
-        'avatar' => '/images/default.jpg',
+        'country_id' => $faker->numberBetween(1, $totalCountries),
+        'avatar' => '/img/avatar/default.jpg',
+        'score' => $faker->numberBetween(1, 250),
         'remember_token' => str_random(10),
     ];
 });

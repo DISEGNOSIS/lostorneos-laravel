@@ -125,6 +125,12 @@ ol li {
 	margin-bottom: 0.6em;
 }
 
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(199, 199, 199, 0), rgba(199, 199, 199, 0.75), rgba(199, 199, 199, 0));
+}
+
 .activo {
 	background: #af0000 !important;
 }
@@ -249,7 +255,7 @@ ol li {
 	margin-right: 0;
 }
 
-.usuarios li a {
+.usuarios li a, .usuarios li button {
 	display: block;
 	letter-spacing: .1em;
 	color: #222;
@@ -270,6 +276,14 @@ ol li {
 .usuarios li a:hover {
   	color: #fff;
 	text-shadow: 1px 1px 2px #000;
+}
+
+.logout {
+	background: none;
+	border: none;
+	height: 33px;
+	width: 100px;
+	cursor: pointer;
 }
 
 .juegos {
@@ -306,17 +320,30 @@ footer .fecha {
 	color: #fff;
 }
 
-.facebook a:hover {
+.facebook a:hover, .facebook-login a:hover {
 	color: #4267b2;
 }
 
-.discord a:hover {
+.facebook-login {
+	margin-right: 22px;
+}
+
+.discord a:hover, .discord-login a:hover {
 	color: #8b9dfe;
 }
 
-.discord {
+.discord, .discord-login {
 	padding-top: 3px;
 	margin-right: 22px;
+}
+
+.social-login {
+	display: flex;
+	justify-content: center;
+}
+
+.social-login a {
+	font-size: 3.3em;
 }
 
 .disegnosis {
@@ -473,7 +500,6 @@ footer .fecha {
 	color: #111;
 	text-shadow: 1px 1px 2px #fff;
 }
-
 
 
 @media only screen and (max-width: 1368px) {

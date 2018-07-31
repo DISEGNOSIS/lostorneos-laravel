@@ -11,19 +11,39 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('home');
+Route::get('/', 'PagesController@index')->name('home');
 
-Route::get('/faq', function () {
-    return view('faq');
-});
+Route::get('/faq', 'PagesController@faq')->name('faq');
 
 
-Route::get('/my-account', function () {
-    return view('my-account');
-});
+Route::get('/my-account', 'UsersController@show')->name('my-account');
 
 Auth::routes();
+
+Route::get('login/facebook', 'Auth\LoginController@redirectToFacebook')->name('facebook');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleFacebookCallback');
+
+Route::get('login/discord', 'Auth\LoginController@redirectToDiscord')->name('discord');
+Route::get('login/discord/callback', 'Auth\LoginController@handleDiscordCallback');
+
+Route::get('login/github', 'Auth\LoginController@redirectToGitHub')->name('github');
+Route::get('login/github/callback', 'Auth\LoginController@handleGitHubCallback');
+//Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::prefix('admin')->middleware('role:superadministrator|administrator|editor')->group(function() {
+    Route::get('/', 'AdminController@index')->name('admin');
+    Route::get('/users', 'AdminUsersController@index')->name('admin.users');
+    Route::post('/users', 'AdminUsersController@store')->name('admin.users.store');
+    Route::get('/users/create', 'AdminUsersController@create')->name('admin.users.create');
+    Route::get('/users/{user}', 'AdminUsersController@show')->name('admin.users.show');
+    Route::get('/users/{user}/edit', 'AdminUsersController@edit')->name('admin.users.edit');
+    Route::put('/users/{user}', 'AdminUsersController@update')->name('admin.users.update');
+    Route::delete('/users/{user}', 'AdminUsersController@destroy')->name('admin.users.destroy');
+
+    Route::get('/roles', 'AdminController@index')->name('admin.roles');
+
+});
 
 //Route::get('/home', 'HomeController@index')->name('home');
