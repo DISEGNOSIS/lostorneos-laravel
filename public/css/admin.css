@@ -5,6 +5,7 @@
 body {
 	background: #333 url(../img/fondo.jpg) no-repeat center;
 	background-size: cover;
+	background-attachment: fixed;
 	width: 100%;
 	height: 100%;
 	padding: 0;
@@ -432,7 +433,7 @@ footer .fecha {
 .imagen-usuario {
 	width: 100%;
 	height: auto;
-	max-width: 266px;
+	max-width: 299px;
 	border-radius: 0 13px;
 	border: 2px solid #fff;
 	-moz-box-shadow: 3px 3px 6px #000;
@@ -702,6 +703,140 @@ footer .fecha {
 	color: #000;
 	font-weight: bold;
 }
+
+.container {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	font-size: 1em;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.container:first-child {
+	margin:0 6% 0 17%;
+}
+
+.container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 25px;
+	width: 25px;
+	background-color: #eee;
+	border-radius: 50%;
+}
+
+.container:hover input ~ .checkmark {
+	background-color: #FFA933;
+}
+
+.container input:checked ~ .checkmark {
+	background-color: #FF8A07;
+}
+
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+	display: block;
+}
+
+.container .checkmark:after {
+	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+
+.checkbox {
+	display: flex;
+	flex-direction: row wrap;
+}
+
+.hidden {
+	display: none;
+}
+
+.password {
+	animation: blinkNaim 500ms linear infinite;
+}
+
+@keyframes blinkAnim {
+	0% {
+	  opacity: 0;
+	}
+	50% {
+	  opacity: 1;
+	}
+}
+
+#change-password {
+	font-size: 0.8em;
+	background: deepskyblue;
+	padding: 13px 22px;
+	border-radius: 33px;
+	text-shadow: 1px 1px 2px #000;
+	cursor: pointer;
+	margin-top: 13px;
+	text-align: center;
+}
+
+#change-password:hover {
+	background: #FFAA49;
+	color: #000;
+	text-shadow: 1px 1px 2px #fff;
+}
+#change-avatar {
+	font-size: 0.8em;
+	background: #FFAA49;
+	padding: 13px 22px;
+	border-radius: 33px;
+	text-shadow: 1px 1px 2px #000;
+	cursor: pointer;
+	margin-top: 33px;
+	text-align: center;
+}
+#change-avatar:hover {
+	background: deepskyblue;
+	color: #000;
+	text-shadow: 1px 1px 2px #fff;
+}
+
+.col-2 {
+	display: flex;
+}
+
+.left {
+	display: flex;
+	flex-flow: column;
+	width: 33%;
+}
+
+.right {
+	display: flex;
+	flex-flow: column wrap;
+	width: 100%;
+}
+
+
+
+
 
 @media only screen and (max-width: 1368px) {
 

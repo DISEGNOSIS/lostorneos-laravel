@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use App\User;
+use App\Country;
 
 class AdminUsersController extends Controller
 {
@@ -25,7 +28,8 @@ class AdminUsersController extends Controller
      */
     public function create()
     {
-        //
+        $countries = Country::all();
+        return view('admin.users.create', compact('countries'));
     }
 
     /**
@@ -36,7 +40,44 @@ class AdminUsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Validator::make($request, [
+            'name' => 'string|min:3|max:255',
+            'username' => 'required|string|min:2|max:255|unique:users',
+            'email' => 'required|string|email|min:2|max:255|unique:users',
+            'country' => 'required|string'
+        ]);
+
+        if(Request::has('password') && !empty($request->password)) {
+            Validator::make($request, [
+                'password' => 'required|string|min:6|confirmed'
+            ]);
+            $password = trim($request->password);
+        } else {
+            $length = 10;
+            $keyspace = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ';
+            $str = '';
+            $max = mb_strlen($keyspace, '8bit') - 1;
+            for($i = 0; $i < $length; $i++) {
+                $str .= $keyspace[random_int(0, $max)];
+            }
+            $password = $str;
+        }
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->password = Hash::make($password);
+        $user->country_id = $request->country;
+        $user->avatar = '/images/avatar/default.jpg';
+
+        if($user->save()) {
+            \Flash::success("El Usuario $user->username se ha creado con éxito.");
+            return redirect()->route('admin.users');
+        } else {
+            \Flash::error("El Usuario NO se ha podido crear.");
+            return back();
+        }
     }
 
     /**
@@ -47,7 +88,8 @@ class AdminUsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('admin.users.show', compact('user'));
     }
 
     /**
@@ -58,7 +100,9 @@ class AdminUsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $countries = Country::all();
+        return view('admin.users.edit', compact('user', 'countries'));
     }
 
     /**

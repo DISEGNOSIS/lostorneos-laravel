@@ -5,6 +5,7 @@
 body {
 	background: #333 url(../img/fondo.jpg) no-repeat center;
 	background-size: cover;
+	background-attachment: fixed;
 	width: 100%;
 	height: 100%;
 	padding: 0;
