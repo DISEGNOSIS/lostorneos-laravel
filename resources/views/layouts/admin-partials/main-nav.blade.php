@@ -5,10 +5,11 @@
 </a>
 <nav class="main-nav">
     <ul>
-        <li class="activo"><a href="{{ route('home') }}"><i class="fas fa-home"></i></a></li>
-        <li><a href="#buscar.php"><i class="fas fa-search"></i>&nbsp; Buscar</a></li>
-        <li><a href="#crear-torneo.php"><i class="fas fa-trophy"></i>&nbsp; Crear Torneo</a></li>
-        <li><a href="{{ route('faq') }}"><i class="fas fa-question"></i>&nbsp; Ayuda</a></li>
-        <li><a href="#contacto.php"><i class="fas fa-envelope"></i></a></li>
+        <li class="activo"><a href="{{  route('admin.users') }}"><i class="fas fa-users"></i>&nbsp; Usuarios</a>
+            <li><a href="{{  route('admin.roles') }}"><i class="fas fa-users-cog"></i>&nbsp; Roles & Permisos</a></li>
+        </li>
+        <li><a href="{{  route('admin.teams') }}"><i class="fas fa-users-cog"></i>&nbsp; Equipos</a></li>
+        <li><a href="{{  route('admin.matches') }}"><i class="fas fa-users-cog"></i>&nbsp; Partidos</a></li>
+        <li><a href="{{  route('admin.posts') }}"><i class="fas fa-users"></i>&nbsp; Artículos</a></li>
     </ul>
 </nav>

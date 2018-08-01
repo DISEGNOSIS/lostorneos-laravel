@@ -61,9 +61,9 @@
 	@include('layouts.admin-partials.main-nav')
     </header>
     <section class="admin">
-        <aside>
+        {{-- <aside>
             @include('layouts.admin-partials.sidebar')
-        </aside>
+        </aside> --}}
         <main>
             @yield('content')
         </main>

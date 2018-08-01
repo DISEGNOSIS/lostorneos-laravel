@@ -13,20 +13,28 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th></th>
                     <th>ID</th>
                     <th>Nombre</th>
+                    <th>Usuario</th>
                     <th>e-Mail</th>
+                    <th>País</th>
                     <th>Creado el</th>
-                    <th>Acciones</th>
+                    <th>Último Ingreso</th>
+                    <th>Editar &nbsp; Borrar</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($users as $user)
                     <tr>
+                        <td>{{ $user->active }}</td>
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->name ? $user->name : '' }}</td>
+                        <td>{{ $user->username }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->created_at->toFormattedDateString() }}</td>
+                        <td><img src="{{ $user->country->flag }}" alt="{{ $user->country->name }}" class="flag"/></td>
+                        <td>{{ $user->created_at->toDayDateTimeString() }}</td>
+                        <td>{{ $user->last_sign_in ? $user->last_sign_in->toDayDateTimeString() : '' }}</td>
                         <td>
                             <div class="actions">
                                 <a class="edit" href="{{ route('admin.users.edit', $user->id) }}"><i class="fas fa-edit"></i></a>

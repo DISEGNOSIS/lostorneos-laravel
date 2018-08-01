@@ -151,6 +151,7 @@ return [
         \SocialiteProviders\Manager\ServiceProvider::class,
         Laratrust\LaratrustServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
+        Webpatser\Countries\CountriesServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -216,6 +217,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Laratrust'   => Laratrust\LaratrustFacade::class,
         'Flash' => Laracasts\Flash\Flash::class,
+        'Countries' => Webpatser\Countries\CountriesFacade::class,
 
     ],
 

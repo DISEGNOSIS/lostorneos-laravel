@@ -22,7 +22,7 @@ class AlterUsersTable extends Migration
             $table->boolean('active')->after('social_hash')->default(1);
             $table->date('last_sign_in')->after('active')->nullable();
 
-            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+            //$table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
         });
     }
 

@@ -18,13 +18,13 @@ class UsersTableSeeder extends Seeder
 			'username' => 'loquero',
 	        'email' => '0@algo.com',
             'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm',  // secret
-            'country_id' => 10,
+            'country_id' => 32,
             'avatar' => '/img/avatar/gua.jpg',
             'remember_token' => str_random(10),
             'created_at'	=>	Carbon::now(),
 			'updated_at'	=>	Carbon::now()
         ]);
 
-        factory(User::class, 49)->create();
+        //factory(User::class, 49)->create();
     }
 }

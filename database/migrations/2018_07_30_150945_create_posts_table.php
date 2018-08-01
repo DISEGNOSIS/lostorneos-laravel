@@ -25,11 +25,11 @@ class CreatePostsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('posts', function (Blueprint $table) {
+        /* Schema::table('posts', function (Blueprint $table) {
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('game_id')->references('id')->on('games');
-        });
+        }); */
     }
 
     /**

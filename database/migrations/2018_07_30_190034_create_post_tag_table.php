@@ -20,10 +20,10 @@ class CreatePostTagTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('post_tag', function (Blueprint $table) {
+        /* Schema::table('post_tag', function (Blueprint $table) {
             $table->foreign('post_id')->references('id')->on('posts');
             $table->foreign('tag_id')->references('id')->on('tags');
-        });
+        }); */
     }
 
     /**

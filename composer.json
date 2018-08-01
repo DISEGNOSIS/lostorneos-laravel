@@ -14,7 +14,8 @@
         "laraveles/spanish": "^1.0",
         "santigarcor/laratrust": "5.0.*",
         "socialiteproviders/discord": "^2.0",
-        "spatie/laravel-sluggable": "^2.1"
+        "spatie/laravel-sluggable": "^2.1",
+        "webpatser/laravel-countries": "dev-master"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
