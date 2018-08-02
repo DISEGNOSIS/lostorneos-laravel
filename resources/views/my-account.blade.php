@@ -17,7 +17,7 @@
                     <div class="datos-usuario">
                         <h2>Usuario: &nbsp; <span>{{ Auth::user()->username }}</span></h2>
                         <h2>e-Mail: &nbsp; <span>{{ Auth::user()->email }}</span></h2>
-                        <h2>País: &nbsp; <span>{{ Auth::user()->country->code == "AR" ? "Argentina" : Auth::user()->country }}</span></h2>
+                        <h2>País: &nbsp; <span>{{ Auth::user()->country->name }}</span></h2>
                     </div>
                 </div>
 			</section>

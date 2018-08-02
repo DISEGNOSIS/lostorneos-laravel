@@ -67,7 +67,7 @@ class RegisterController extends Controller
     {
         $request = app('request');
         if($request->hasFile('avatar')) {
-            $path = $request->file('avatar'->storeAs('public/img/avatar'));
+            $path = $request->file('avatar')->storeAs('public/img/avatar');
         } else {
             $path = '/images/avatar/default.jpg';
         }

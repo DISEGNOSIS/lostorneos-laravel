@@ -193,7 +193,7 @@ return [
         /**
          * Parameter passed to the middleware_handling method
          */
-        'params' => 'login',
+        'params' => '/',
 
     ],
 

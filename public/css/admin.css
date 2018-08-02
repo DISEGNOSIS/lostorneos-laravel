@@ -66,8 +66,8 @@ main {
 	align-self: stretch;
 	display: flex;
 	flex-flow: column wrap;
-	width: 98%;
 	justify-content: center;
+	width: 98%;
 	margin: 13px 1% 33px;
 	background: rgba(0,0,0,0.8);
 	padding: 0 13px;
@@ -89,6 +89,7 @@ aside {
 .admin {
 	display: flex;
 	flex-flow: row no-wrap;
+	align-items: flex-start;
 }
 
 nav .sidebar {
@@ -537,6 +538,12 @@ footer .fecha {
 	color: #FFA933;
 }
 
+.campo label {
+	text-align: right;
+	width: 100px;
+	margin-right: 13px;
+}
+
 .formulario input, .formulario select {
 	flex: 0.5;
 	font-size: 1em;
@@ -636,11 +643,6 @@ footer .fecha {
 	text-shadow: 1px 1px 2px #fff;
 }
 
-.actions {
-	display: flex;
-	justify-content: center;
-}
-
 .edit {
 	font-size: 0.9em;
 	color: #fff;
@@ -653,7 +655,6 @@ footer .fecha {
 	-moz-box-shadow: 3px 3px 6px #000;
 	-webkit-box-shadow: 3px 3px 6px #000;
 	box-shadow: 3px 3px 6px #000;
-	margin-right: 13px;
 }
 
 .edit:hover {
@@ -823,18 +824,20 @@ footer .fecha {
 
 .col-2 {
 	display: flex;
+	flex-flow: row wrap;
 }
 
 .left {
 	display: flex;
-	flex-flow: column;
-	width: 33%;
+	flex-flow: column wrap;
+	flex-grow: 1;
+	align-items: center;
 }
 
 .right {
 	display: flex;
 	flex-flow: column wrap;
-	width: 100%;
+	flex-grow: 3;
 }
 
 .flag {
@@ -847,8 +850,54 @@ footer .fecha {
 	box-shadow: 3px 3px 6px #000;;
 }
 
+.fa-check {
+	color: #00b549;
+}
 
+.fa-times {
+	color: #ca0000;
+}
 
+.heading {
+	display: flex;
+
+}
+
+.heading h1 {
+	flex-grow: 1;
+}
+
+.botones button, .botones a {
+	font-size: 1em;
+	color: #fff;
+	text-shadow: 1px 1px 2px #000;
+	border: 1px solid #000;
+	border-radius: 9px;
+	background: #ca0000;
+	padding: 6px 13px;
+	cursor: pointer;
+	-moz-box-shadow: 3px 3px 6px #000;
+	-webkit-box-shadow: 3px 3px 6px #000;
+	box-shadow: 3px 3px 6px #000;
+}
+
+.botones button:first-child {
+	background: #00b549;
+	margin-right: 13px;
+	font-weight: 900;
+	margin-top: 22px;
+}
+
+.botones button:hover, .botones a:hover {
+	color: #111;
+	text-shadow: 1px 1px 2px #fff;
+}
+
+.botones button:first-child:hover {
+	background: #00fa6b;
+	color: #111;
+	text-shadow: 1px 1px 2px #fff;
+}
 
 
 @media only screen and (max-width: 1368px) {

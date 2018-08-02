@@ -12,7 +12,7 @@ class LaratrustSeeder extends Seeder
      */
     public function run()
     {
-        $this->command->info('Truncating User, Role and Permission tables');
+        //$this->command->info('Truncating User, Role and Permission tables');
         $this->truncateLaratrustTables();
 
         $config = config('laratrust_seeder.role_structure');
@@ -29,7 +29,7 @@ class LaratrustSeeder extends Seeder
             ]);
             $permissions = [];
 
-            $this->command->info('Creating Role '. strtoupper($key));
+            //$this->command->info('Creating Role '. strtoupper($key));
 
             // Reading role permission modules
             foreach ($modules as $module => $value) {
@@ -44,26 +44,27 @@ class LaratrustSeeder extends Seeder
                         'description' => ucfirst($permissionValue) . ' ' . ucfirst($module),
                     ])->id;
 
-                    $this->command->info('Creating Permission to '.$permissionValue.' for '. $module);
+                    //$this->command->info('Creating Permission to '.$permissionValue.' for '. $module);
                 }
             }
 
             // Attach all permissions to the role
             $role->permissions()->sync($permissions);
 
-            $this->command->info("Creating '{$key}' user");
+            //$this->command->info("Creating '{$key}' user");
 
             // Create default user for each role
-            $user = \App\User::create([
+            /* $user = \App\User::create([
                 'name' => ucwords(str_replace('_', ' ', $key)),
                 'username' => ucwords(str_replace('_', ' ', $key)),
                 'email' => $key.'@app.com',
                 'password' => bcrypt('secret'),
                 'country_id' => 10,
-                'avatar' => '/img/avatar/gua.jpg',
+                'avatar' => '/img/avatar/default.jpg',
+                'remember_token' => str_random(10),
             ]);
 
-            $user->attachRole($role);
+            $user->attachRole($role); */
         }
 
         // Creating user with permissions
@@ -92,7 +93,7 @@ class LaratrustSeeder extends Seeder
                             'description' => ucfirst($permissionValue) . ' ' . ucfirst($module),
                         ])->id;
 
-                        $this->command->info('Creating Permission to '.$permissionValue.' for '. $module);
+                        //$this->command->info('Creating Permission to '.$permissionValue.' for '. $module);
                     }
                 }
 

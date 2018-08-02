@@ -16,6 +16,7 @@ class CountriesTableSeeder extends Seeder {
 
         //Get all of the countries
         $countries = Countries::getList();
+        
         foreach ($countries as $countryId => $country){
             DB::table(\Config::get('countries.table_name'))->insert([
                 'id' => $countryId,

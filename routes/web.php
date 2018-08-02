@@ -16,7 +16,7 @@ Route::get('/', 'PagesController@index')->name('home');
 Route::get('/faq', 'PagesController@faq')->name('faq');
 
 
-Route::get('/my-account', 'UsersController@show')->name('my-account');
+Route::get('/my-account', 'UsersController@show')->name('my-account')->middleware('role:owner|admin|editor|user');
 
 Auth::routes();
 
@@ -32,7 +32,7 @@ Route::get('login/github/callback', 'Auth\LoginController@handleGitHubCallback')
 
 Auth::routes();
 
-Route::prefix('admin')->middleware('role:superadministrator|administrator|editor')->group(function() {
+Route::prefix('admin')->middleware('role:owner|admin|editor')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin');
     Route::get('/users', 'AdminUsersController@index')->name('admin.users');
     Route::post('/users', 'AdminUsersController@store')->name('admin.users.store');

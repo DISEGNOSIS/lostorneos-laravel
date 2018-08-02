@@ -41,7 +41,7 @@
                     <select name="country">
                        <option value="" disabled>País</option>
                        @foreach($countries as $country)
-                            @if($country->code == 'AR')
+                            @if($country->id == 10)
                                 <option value="{{ $country->id }}" selected>{{ $country->name }}</option>
                             @else
                                 <option value="{{ $country->id }}">{{ $country->name }}</option>
@@ -78,7 +78,7 @@
                     @endif
                 </div>
                 <div class="campo">
-                    <input id="password-confirm" type="password" class="hidden password" name="password_confirmation" placeholder="Confirmar Contraseña"/>
+                    <input id="password_confirmation" type="password" class="hidden password" name="password_confirmation" placeholder="Confirmar Contraseña"/>
                 </div>
                 <div class="campo">
                     <button type="submit">Registrarme</button>
@@ -90,5 +90,5 @@
 @endsection
 
 @section('scripts')
-    <script src="/js/form.js"></script>
+    <script src="/js/admin-user-create.js"></script>
 @endsection
