@@ -16,10 +16,10 @@ class CountriesTableSeeder extends Seeder {
 
         //Get all of the countries
         $countries = Countries::getList();
-        
+        $id = 1;
         foreach ($countries as $countryId => $country){
             DB::table(\Config::get('countries.table_name'))->insert([
-                'id' => $countryId,
+                'id' => $id,
                 'capital' => ((isset($country['capital'])) ? $country['capital'] : null),
                 'citizenship' => ((isset($country['citizenship'])) ? $country['citizenship'] : null),
                 'country_code' => $country['country-code'],
@@ -38,6 +38,7 @@ class CountriesTableSeeder extends Seeder {
                 'currency_symbol' => ((isset($country['currency_symbol'])) ? $country['currency_symbol'] : null),
                 'flag' =>((isset($country['flag'])) ? $country['flag'] : null),
             ]);
+            $id++;
         }
     }
 }

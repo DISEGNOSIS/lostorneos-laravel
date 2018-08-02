@@ -33,7 +33,7 @@
                         <td><a href="{{ route('admin.users.show', $user->id) }}">{{ $user->name ? $user->name : '' }}</a></td>
                         <td>{{ $user->username }}</td>
                         <td>{{ $user->email }}</td>
-                        <td><img src="/img/flags/{{ $user->country ? $user->country->flag : '' }}" alt="{{ $user->country ? $user->country->name : '' }}" class="flag"/></td>
+                        <td><img src="/img/flags/{{ $user->country ? strtolower($user->country->flag) : '' }}" alt="{{ $user->country ? $user->country->name : '' }}" class="flag"/></td>
                         <td>{{ $user->created_at->toDayDateTimeString() }}</td>
                         <td>{{ $user->last_sign_in ? $user->last_sign_in->toDayDateTimeString() : '' }}</td>
                         <td>

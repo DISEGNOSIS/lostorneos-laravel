@@ -48,7 +48,7 @@ class AdminUsersController extends Controller
         ]);
 
         if($request->has('password') && !empty($request->password)) {
-            Validator::make($request, [
+            Validator::make($request->password, [
                 'password' => 'required|string|min:6|confirmed'
             ]);
             $password = trim($request->password);
@@ -129,23 +129,24 @@ class AdminUsersController extends Controller
         $user->score = $request->score;
 
         if($request->has('password') && !empty($request->password)) {
-            Validator::make($request, [
+            Validator::make($request->password, [
                 'password' => 'required|string|min:6|confirmed'
             ]);
             $user->password = Hash::make($request->password);
         }
 
         if($request->hasFile('avatar')) {
-            /* Validator::make($request, [
+            /* Validator::make($request->avatar, [
                 'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
             ]); */
-            $image = $request->file('avatar')->store('public/img/avatar');
+            $image = $request->file('avatar');
             $extension = $request->file('avatar')->extension();
-            $user->avatar = uniqid() . "." . $extension;
+            $newName = uniqid() . "." . $extension;
+            $image->storeAs('public/img/avatar', $newName);
+            $user->avatar = $newName;
         }
 
         if($user->save()) {
-            dd($user);
             \Flash::success("El Usuario $user->username se ha creado con éxito.");
             return redirect()->route('admin.users');
         } else {

@@ -12,7 +12,7 @@
         <h1>{{ $user->username }}</h1>
         <section class="formulario">
             <div class="mi-cuenta">
-                <img src="{{ $user->avatar }}" alt="Foto Perfil" class="imagen-usuario" />
+                <img src="{{ asset('storage/img/avatar/' . $user->avatar) }}" alt="Foto Perfil" class="imagen-usuario" />
                 <div class="datos-usuario">
                     <h2>ID: &nbsp; <span>{{ $user->id }}</span></h2>
                     @if($user->name)
