@@ -13,53 +13,49 @@
 		<article>
 			<h1>Creá tu Cuenta:</h1>
 			<section class="formulario">
-				<form id="registro" action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
+				<form id="registro" action="{{ route('register') }}" method="POST" aria-label="{{ __('Register') }}" enctype="multipart/form-data">
 					@csrf
 					<div class="campo">
 						<input id="name" type="text" class="{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="Nombre" autofocus>
-
-						@if ($errors->has('name'))
-							<span class="error" role="alert">
-								<strong>{{ $errors->first('name') }}</strong>
-							</span>
-						@endif
 					</div>
+					@if($errors->has('name'))
+						<p class="error" role="alert">
+							<strong>{{ $errors->first('name') }}</strong>
+						</p>
+					@endif
 					<div class="campo">
 						<input id="username" type="text" class="{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" placeholder="Usuario" required autofocus>
-
-						@if ($errors->has('username'))
-							<span class="error" role="alert">
-								<strong>{{ $errors->first('username') }}</strong>
-							</span>
-						@endif
 					</div>
+					@if($errors->has('username'))
+						<p class="error" role="alert">
+							<strong>{{ $errors->first('username') }}</strong>
+						</p>
+					@endif
 					<div class="campo">
 						<input id="email" type="email" class="{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email" required>
-
-						@if ($errors->has('email'))
-							<span class="error" role="alert">
-								<strong>{{ $errors->first('email') }}</strong>
-							</span>
-						@endif
 					</div>
+					@if($errors->has('email'))
+						<p class="error" role="alert">
+							<strong>{{ $errors->first('email') }}</strong>
+						</p>
+					@endif
 					<div class="campo">
 						<input id="password" type="password" class="{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Contraseña" required>
-
-						@if ($errors->has('password'))
-							<span class="error" role="alert">
-								<strong>{{ $errors->first('password') }}</strong>
-							</span>
-						@endif
 					</div>
+					@if($errors->has('password'))
+						<p class="error" role="alert">
+							<strong>{{ $errors->first('password') }}</strong>
+						</p>
+					@endif
 					<div class="campo">
 						<input id="password-confirm" type="password" name="password_confirmation" placeholder="Confirmar Contraseña" required>
 					</div>
 					<div class="campo">
-						<select name="country-id">
+						<select name="country" required>
 						   <option value="" disabled>País</option>
 						   @foreach($countries as $country)
 	
-								@if($country->code == 'AR')
+								@if($country->id == 10)
 									<option value="{{ $country->id }}" selected>{{ $country->name }}</option>
 								@else
 									<option value="{{ $country->id }}">{{ $country->name }}</option>
@@ -67,10 +63,14 @@
 						   @endforeach
 						</select>
 					</div>
-					<div class="<?= $estilo ?>"><?= isset($errores["fotoUsuario"]) ? $errores["fotoUsuario"] : "" ?></div>
 					<div class="campo">
-						<input type="file" name="fotoUsuario" value="<?= isset($_FILES["fotoUsuario"]["name"]) ? $_FILES["fotoUsuario"]["name"] : "" ?>" accept="image/*">
+						<input type="file" name="avatar" value="<?= isset($_FILES["avatar"]["name"]) ? $_FILES["avatar"]["name"] : "" ?>" accept="image/*">
 					</div>
+					@if($errors->has('avatar'))
+						<p class="error" role="alert">
+							<strong>{{ $errors->first('avatar') }}</strong>
+						</p>
+					@endif
 					<div class="campo">
 						<button type="submit" form="registro" value="registrarme">Registrarme</button>
 						<button type="reset" form="registro" value="reset">Borrar</button>

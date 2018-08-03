@@ -40,15 +40,15 @@ class AdminUsersController extends Controller
      */
     public function store(Request $request)
     {
-        Validator::make($request->all(), [
+        $this->validate($request, [
             'name' => 'string|min:3|max:255',
-            'username' => 'required|string|min:2|max:255|unique:users',
-            'email' => 'required|string|email|min:2|max:255|unique:users',
+            'username' => 'required|unique:users|string|min:2|max:255',
+            'email' => 'required|unique:users|email|string|min:2|max:255',
             'country' => 'required|string'
         ]);
 
         if($request->has('password') && !empty($request->password)) {
-            Validator::make($request->password, [
+            $this->validate($request, [
                 'password' => 'required|string|min:6|confirmed'
             ]);
             $password = trim($request->password);
@@ -69,8 +69,7 @@ class AdminUsersController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($password);
         $user->country_id = $request->country;
-        $user->avatar = '/img/avatar/default.jpg';
-
+        $user->avatar = 'default.jpg';
         if($user->save()) {
             \Flash::success("El Usuario $user->username se ha creado con éxito.");
             return redirect()->route('admin.users');
@@ -114,10 +113,10 @@ class AdminUsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Validator::make($request->all(), [
+        $this->validate($request, [
             'name' => 'string|min:3|max:255',
-            'username' => 'required|string|min:2|max:255|unique:users'.$id,
-            'email' => 'required|string|email|min:2|max:255|unique:users'.$id,
+            'username' => 'required|unique:users|string|min:2|max:255'.$id,
+            'email' => 'required|unique:users|email|string|min:2|max:255'.$id,
             'country' => 'required|string'
         ]);
 
@@ -129,7 +128,7 @@ class AdminUsersController extends Controller
         $user->score = $request->score;
 
         if($request->has('password') && !empty($request->password)) {
-            Validator::make($request->password, [
+            $this->validate($request, [
                 'password' => 'required|string|min:6|confirmed'
             ]);
             $user->password = Hash::make($request->password);
@@ -164,5 +163,11 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         dd($id);
+    }
+
+    public function search(Request $request) {
+        $query = $request->input('query');
+        $users = User::where('username', 'LIKE', '%'. $query .'%')->paginate(15);
+        return view('admin.users.index', compact('users'));
     }
 }

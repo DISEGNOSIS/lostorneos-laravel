@@ -16,7 +16,7 @@ Route::get('/', 'PagesController@index')->name('home');
 Route::get('/faq', 'PagesController@faq')->name('faq');
 
 
-Route::get('/my-account', 'UsersController@show')->name('my-account')->middleware('role:owner|admin|editor|user');
+Route::get('/my-account', 'UsersController@show')->name('my-account')->middleware('auth');
 
 Auth::routes();
 
@@ -28,14 +28,12 @@ Route::get('login/discord/callback', 'Auth\LoginController@handleDiscordCallback
 
 Route::get('login/github', 'Auth\LoginController@redirectToGitHub')->name('github');
 Route::get('login/github/callback', 'Auth\LoginController@handleGitHubCallback');
-//Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
 
 Route::prefix('admin')->middleware('role:owner|admin|editor')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin');
     Route::get('/users', 'AdminUsersController@index')->name('admin.users');
     Route::post('/users', 'AdminUsersController@store')->name('admin.users.store');
+    Route::get('/users/search', 'AdminUsersController@search')->name('admin.users.search');
     Route::get('/users/create', 'AdminUsersController@create')->name('admin.users.create');
     Route::get('/users/{user}', 'AdminUsersController@show')->name('admin.users.show');
     Route::get('/users/{user}/edit', 'AdminUsersController@edit')->name('admin.users.edit');
@@ -45,5 +43,3 @@ Route::prefix('admin')->middleware('role:owner|admin|editor')->group(function() 
     Route::get('/roles', 'AdminController@index')->name('admin.roles');
 
 });
-
-//Route::get('/home', 'HomeController@index')->name('home');

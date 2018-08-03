@@ -35,7 +35,7 @@
 		<nav class="usuarios {{ Auth::user() ? 'subir' : '' }}">
 				@if(Auth::user())
 					<div class="usuario">
-						<img src="{{ Auth::user()->avatar }}" alt="Foto Perfil" class="foto-usuario"/>
+						<img src="{{ asset('storage/img/avatar/' . Auth::user()->avatar) }}" alt="Foto Perfil" class="foto-usuario"/>
 						<h4>{{ Auth::user()->username }}</h4>
 					</div>
 					<ul>

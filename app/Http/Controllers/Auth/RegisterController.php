@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Country;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -40,6 +41,11 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm() {
+        $countries = Country::all();
+        return view('auth.register', compact('countries'));
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -48,11 +54,11 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'username' => 'required|string|max:255|unique:users',
-            'email' => 'required|string|email|max:255|unique:users',
+        return $this->validate($data, [
+            'username' => 'required|unique:users|string|max:255',
+            'email' => 'required|unique:users|email|string|max:255',
             'password' => 'required|string|min:6|confirmed',
-            'country-id' => 'required',
+            'country' => 'required',
             'avatar' => 'required'
         ]);
     }
@@ -67,16 +73,20 @@ class RegisterController extends Controller
     {
         $request = app('request');
         if($request->hasFile('avatar')) {
-            $path = $request->file('avatar')->storeAs('public/img/avatar');
+            $image = $request->file('avatar');
+            $extension = $request->file('avatar')->extension();
+            $path = uniqid() . "." . $extension;
+            $image->storeAs('public/img/avatar', $path);
         } else {
-            $path = '/images/avatar/default.jpg';
+            $path = 'default.jpg';
         }
         return User::create([
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'country' => $data['country'],
+            'country_id' => $data['country'],
             'avatar' => $path
         ]);
     }
+    
 }
