@@ -32,11 +32,13 @@ Route::get('login/github/callback', 'Auth\LoginController@handleGitHubCallback')
 Route::prefix('admin')->middleware('role:owner|admin|editor')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin');
     Route::get('/users', 'AdminUsersController@index')->name('admin.users');
+    Route::get('/users/ajax', 'AdminUsersController@ajax')->name('admin.users.ajax');
     Route::post('/users', 'AdminUsersController@store')->name('admin.users.store');
     Route::get('/users/search', 'AdminUsersController@search')->name('admin.users.search');
     Route::get('/users/create', 'AdminUsersController@create')->name('admin.users.create');
     Route::get('/users/{user}', 'AdminUsersController@show')->name('admin.users.show');
     Route::get('/users/{user}/edit', 'AdminUsersController@edit')->name('admin.users.edit');
+    Route::get('/users/{user}/active', 'AdminUsersController@active')->name('admin.users.active');
     Route::put('/users/{user}', 'AdminUsersController@update')->name('admin.users.update');
     Route::delete('/users/{user}', 'AdminUsersController@destroy')->name('admin.users.destroy');
 

@@ -15,7 +15,7 @@
     </div>
     <article class="col-2">
         <section class="left">
-            <img src="{{ $user->avatar }}" alt="Foto Perfil" class="imagen-usuario" />
+            <img src="{{ asset('storage/img/avatar/' . $user->avatar) }}" alt="Foto Perfil" class="imagen-usuario" />
             <a id="change-avatar">Cambiar la Imagen de Perfil</a>
             <a id="change-password">Cambiar la Contraseña</a>
         </section>
@@ -25,7 +25,7 @@
                 @method('PUT')
                 <div class="campo">
                     <label for="name">Nombre:</label>
-                    <input id="name" type="text" class="{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name }}" placeholder="Nombre" autofocus/>
+                    <input id="name" type="text" class="{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name ? $user->name : old('name') }}" placeholder="Nombre" autofocus/>
                     @if($errors->has('name'))
                         <span class="error" role="alert">
                             <strong>{{ $errors->first('name') }}</strong>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="campo">
                     <label for="score">Puntuación:</label>
-                    <input id="score" type="text" class="{{ $errors->has('score') ? ' is-invalid' : '' }}" name="score" value="{{ $user->score }}" placeholder="Puntuación" autofocus/>
+                    <input id="score" type="text" class="{{ $errors->has('score') ? ' is-invalid' : '' }}" name="score" value="{{ $user->score ? $user->score : old('score') }}" placeholder="Puntuación" autofocus/>
 
                     @if($errors->has('score'))
                         <span class="error" role="alert">

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\User;
 use App\Country;
+use Illuminate\Validation\Rule;
 
 class AdminUsersController extends Controller
 {
@@ -15,10 +16,30 @@ class AdminUsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate(15);
-        return view('admin.users.index', compact('users'));
+        $request->session()->put('search', $request
+              ->has('search') ? $request->get('search') : ($request->session()
+              ->has('search') ? $request->session()->get('search') : ''));
+
+        $request->session()->put('field', $request
+                ->has('field') ? $request->get('field') : ($request->session()
+                ->has('field') ? $request->session()->get('field') : ''));
+
+        $request->session()->put('sort', $request
+                ->has('sort') ? $request->get('sort') : ($request->session()
+                ->has('sort') ? $request->session()->get('sort') : 'asc'));
+
+        $users = User::where('username', 'LIKE', '%'. $request->session()->get('search') .'%')
+                        /* ->orderBy($request->session()->get('field'), $request->session()->get('sort')) */
+                        ->paginate(15);
+        if($request->ajax()) {
+            return view('admin.users.index', compact('users'));
+        } else {
+            return view('admin.users.ajax', compact('users'));
+        }
+        /* $users = User::paginate(15);
+        return view('admin.users.index', compact('users')); */
     }
 
     /**
@@ -112,11 +133,11 @@ class AdminUsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
         $this->validate($request, [
             'name' => 'string|min:3|max:255',
-            'username' => 'required|unique:users|string|min:2|max:255'.$id,
-            'email' => 'required|unique:users|email|string|min:2|max:255'.$id,
+            'username' => ['required', Rule::unique('users')->ignore($id), 'string','min:2','max:255'],
+            'email' => ['required', Rule::unique('users')->ignore($id), 'email', 'string','min:2','max:255'],
             'country' => 'required|string'
         ]);
 
@@ -168,6 +189,19 @@ class AdminUsersController extends Controller
     public function search(Request $request) {
         $query = $request->input('query');
         $users = User::where('username', 'LIKE', '%'. $query .'%')->paginate(15);
+        return view('admin.users.index', compact('users'));
+    }
+
+    public function active($id) {
+        $user = User::findOrFail($id);
+        if($user->active) {
+            $user->active = 0;
+            $user->save();
+        } else {
+            $user->active = 1;
+            $user->save();
+        }
+        $users = User::paginate(15);
         return view('admin.users.index', compact('users'));
     }
 }
