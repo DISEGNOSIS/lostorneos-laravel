@@ -6,7 +6,7 @@
 
 @section('content')
 	<article>
-        <h1>Usuarios:</h1>
+        <h1 class="listado">Usuarios:</h1>
         @include('layouts.admin-partials.search')
         <div class="new">
             <a href="{{ route('admin.users.create') }}"><i class="fas fa-plus-square"></i> Nuevo Usuario</a>
@@ -15,6 +15,7 @@
             <table id="table" class="table">
                 <thead>
                     <tr>
+                        <th><i class="fas fa-cog"></i></th>
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Usuario</th>

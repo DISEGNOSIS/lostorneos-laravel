@@ -169,7 +169,7 @@ class AdminUsersController extends Controller
     public function search(Request $request) {
         $query = $request->input('query');
         $users = User::where('username', 'LIKE', '%'. $query .'%')->paginate(15);
-        return view('admin.users.index', compact('users'));
+        return $users;
     }
 
     public function active($id) {

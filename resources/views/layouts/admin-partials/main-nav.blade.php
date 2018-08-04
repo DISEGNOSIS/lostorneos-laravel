@@ -4,9 +4,9 @@
     </span>
 </a>
 <nav class="main-nav">
-    <ul>
-        <li class="activo"><a href="{{  route('admin.users') }}"><i class="fas fa-users"></i>&nbsp; Usuarios</a>
-            <ul>
+    <ul class="nav">
+        <li id="dropdown-button" class="activo"><a href="{{  route('admin.users') }}"><i class="fas fa-users"></i>&nbsp; Usuarios <i class="fas fa-caret-down"></i></a>
+            <ul id="dropdown">
                 <li><a href="{{ route('admin.roles') }}"><i class="fas fa-users-cog"></i>&nbsp; Roles</a></li>
                 <li><a href="{{ route('admin.permissions') }}"><i class="fas fa-users-cog"></i>&nbsp; Permisos</a></li>
             </ul>
