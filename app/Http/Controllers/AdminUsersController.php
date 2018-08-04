@@ -17,29 +17,9 @@ class AdminUsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-        $request->session()->put('search', $request
-              ->has('search') ? $request->get('search') : ($request->session()
-              ->has('search') ? $request->session()->get('search') : ''));
-
-        $request->session()->put('field', $request
-                ->has('field') ? $request->get('field') : ($request->session()
-                ->has('field') ? $request->session()->get('field') : ''));
-
-        $request->session()->put('sort', $request
-                ->has('sort') ? $request->get('sort') : ($request->session()
-                ->has('sort') ? $request->session()->get('sort') : 'asc'));
-
-        $users = User::where('username', 'LIKE', '%'. $request->session()->get('search') .'%')
-                        /* ->orderBy($request->session()->get('field'), $request->session()->get('sort')) */
-                        ->paginate(15);
-        if($request->ajax()) {
-            return view('admin.users.index', compact('users'));
-        } else {
-            return view('admin.users.ajax', compact('users'));
-        }
-        /* $users = User::paginate(15);
-        return view('admin.users.index', compact('users')); */
+    {       
+        $users = User::paginate(15);
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -63,8 +43,8 @@ class AdminUsersController extends Controller
     {
         $this->validate($request, [
             'name' => 'string|min:3|max:255',
-            'username' => 'required|unique:users|string|min:2|max:255',
-            'email' => 'required|unique:users|email|string|min:2|max:255',
+            'username' => 'required|unique:users,username|string|min:2|max:255',
+            'email' => 'required|unique:users,email|email|string|min:2|max:255',
             'country' => 'required|string'
         ]);
 
@@ -168,7 +148,7 @@ class AdminUsersController extends Controller
 
         if($user->save()) {
             \Flash::success("El Usuario $user->username se ha creado con éxito.");
-            return redirect()->route('admin.users');
+            return redirect()->route('admin.users.show', $id);
         } else {
             \Flash::error("El Usuario no se ha podido guardar. Por favor intentalo nuevamente.");
             return back();

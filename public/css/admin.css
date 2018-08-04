@@ -544,12 +544,16 @@ footer .fecha {
 	margin-right: 13px;
 }
 
-.formulario input, .formulario select {
+.formulario input, .formulario select, .formulario textarea {
 	flex: 0.5;
 	font-size: 1em;
 	background: #cecece;
 	padding: 6px;
 	margin-bottom: 13px;
+}
+
+.formulario textarea {
+	font-family: 'Roboto', sans-serif;
 }
 
 .formulario button {

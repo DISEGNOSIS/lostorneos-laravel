@@ -20,7 +20,7 @@ class AlterUsersTable extends Migration
             $table->float('score', 10, 2)->after('avatar')->nullable();
             $table->string('social_hash')->nullable()->after('score');
             $table->boolean('active')->after('social_hash')->default(1);
-            $table->date('last_sign_in')->after('active')->nullable();
+            $table->timestamp('last_sign_in')->after('remember_token')->nullable();
 
             //$table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
         });

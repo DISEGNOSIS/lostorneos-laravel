@@ -31,8 +31,8 @@ Route::get('login/github/callback', 'Auth\LoginController@handleGitHubCallback')
 
 Route::prefix('admin')->middleware('role:owner|admin|editor')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin');
+    
     Route::get('/users', 'AdminUsersController@index')->name('admin.users');
-    Route::get('/users/ajax', 'AdminUsersController@ajax')->name('admin.users.ajax');
     Route::post('/users', 'AdminUsersController@store')->name('admin.users.store');
     Route::get('/users/search', 'AdminUsersController@search')->name('admin.users.search');
     Route::get('/users/create', 'AdminUsersController@create')->name('admin.users.create');
@@ -42,6 +42,18 @@ Route::prefix('admin')->middleware('role:owner|admin|editor')->group(function() 
     Route::put('/users/{user}', 'AdminUsersController@update')->name('admin.users.update');
     Route::delete('/users/{user}', 'AdminUsersController@destroy')->name('admin.users.destroy');
 
-    Route::get('/roles', 'AdminController@index')->name('admin.roles');
+    Route::get('/roles', 'AdminRolesController@index')->name('admin.roles');
+    Route::post('/roles', 'AdminRolesController@store')->name('admin.roles.store');
+    Route::get('/roles/create', 'AdminRolesController@create')->name('admin.roles.create');
+    Route::get('/roles/{role}', 'AdminRolesController@show')->name('admin.roles.show');
+    Route::get('/roles/{role}/edit', 'AdminRolesController@edit')->name('admin.roles.edit');
+    Route::put('/roles/{role}', 'AdminRolesController@update')->name('admin.roles.update');
+
+    Route::get('/permissions', 'AdminPermissionsController@index')->name('admin.permissions');
+    Route::post('/permissions', 'AdminPermissionsController@store')->name('admin.permissions.store');
+    Route::get('/permissions/create', 'AdminPermissionsController@create')->name('admin.permissions.create');
+    Route::get('/permissions/{permission}', 'AdminPermissionsController@show')->name('admin.permissions.show');
+    Route::get('/permissions/{permission}/edit', 'AdminPermissionsController@edit')->name('admin.permissions.edit');
+    Route::put('/permissions/{permission}', 'AdminPermissionsController@update')->name('admin.permissions.update');
 
 });

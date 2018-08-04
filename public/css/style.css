@@ -283,6 +283,9 @@ hr {
 	background: none;
 	border: none;
 	height: 33px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+	font-size: 1em;
 	width: 100px;
 	cursor: pointer;
 }

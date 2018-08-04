@@ -1,38 +1,30 @@
-$(document).on('click', 'a.page-link', function (event) {
-    event.preventDefault();
-    ajaxLoad($(this).attr('href'));
-});
+(function() {
 
-function ajaxLoad(filename, content) {
-    content = typeof content !== 'undefined' ? content : 'content';
-    $('.loading').show();
-    $.ajax({
-        type: "GET",
-        url: filename,
-        contentType: false,
-        success: function (data) {
-            $("#" + content).html(data);
-            $('.loading').hide();
-        },
-        error: function (xhr, status, error) {
-            alert(xhr.responseText);
-        }
-    });
-}
+    var input = document.getElementById("query");
+    var query = document.getElementById("query").value;
+    
+    input.addEventListener('keyup', search);
 
-function ajaxDelete(filename, token, content) {
-    content = typeof content !== 'undefined' ? content : 'content';
-    $('.loading').show();
-    $.ajax({
-        type: 'POST',
-        data: {_method: 'DELETE', _token: token},
-        url: filename,
-        success: function (data) {
-            $("#" + content).html(data);
-            $('.loading').hide();
-        },
-        error: function (xhr, status, error) {
-            alert(xhr.responseText);
+    function search() {
+        console.log(query);
+        if(query.length == 0) {
+          document.getElementById("search").innerHTML="";
         }
-    });
-}
+        if(window.XMLHttpRequest) {
+          // code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp = new XMLHttpRequest();
+        } else {  // code for IE6, IE5
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        console.log(xmlhttp.readyState);
+        xmlhttp.onreadystatechange = function() {
+          if(this.readyState == 4 && this.status == 200) {
+            document.getElementById("search").innerHTML = this.responseText;
+            console.log(this.responseText);
+          }
+        }
+        xmlhttp.open("GET","{{ route('admin.users') }}?q="+query,true);
+        xmlhttp.send();
+    }
+
+})();
