@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\User;
 use App\Country;
+use App\Role;
 use Illuminate\Validation\Rule;
 
 class AdminUsersController extends Controller
@@ -18,18 +19,7 @@ class AdminUsersController extends Controller
      */
     public function index(Request $request)
     {   
-        /* $id=$request->get('id');
-        $users = User::paginate(15);
-
-        if(!$users->isEmpty()){
-            $returnHTML = view('admin.users.index', compact('users'))->render();
-            return response()->json($returnHTML);
-        } else{
-            return response()->json(null);
-        } */
-
-
-        $users = User::paginate(15);
+        $users = User::with('country', 'roles')->paginate(15);
         return view('admin.users.index', compact('users'));
     }
 
@@ -41,7 +31,8 @@ class AdminUsersController extends Controller
     public function create()
     {
         $countries = Country::all();
-        return view('admin.users.create', compact('countries'));
+        $roles = Role::all();
+        return view('admin.users.create', compact('countries', 'roles'));
     }
 
     /**
@@ -56,7 +47,8 @@ class AdminUsersController extends Controller
             'name' => 'string|min:3|max:255',
             'username' => 'required|unique:users,username|string|min:2|max:255',
             'email' => 'required|unique:users,email|email|string|min:2|max:255',
-            'country' => 'required|string'
+            'country' => 'required|string',
+            'role' => 'required|string'
         ]);
 
         if($request->has('password') && !empty($request->password)) {
@@ -82,7 +74,9 @@ class AdminUsersController extends Controller
         $user->password = Hash::make($password);
         $user->country_id = $request->country;
         $user->avatar = 'default.jpg';
+        $user->score = $request->score;
         if($user->save()) {
+            $user->attachRole((int)$request->role);
             \Flash::success("El Usuario $user->username se ha creado con éxito.");
             return redirect()->route('admin.users');
         } else {
@@ -99,7 +93,7 @@ class AdminUsersController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::with('country', 'roles')->findOrFail($id);
         return view('admin.users.show', compact('user'));
     }
 
@@ -111,9 +105,10 @@ class AdminUsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::with('country', 'roles')->findOrFail($id);
         $countries = Country::all();
-        return view('admin.users.edit', compact('user', 'countries'));
+        $roles = Role::all();
+        return view('admin.users.edit', compact('user', 'countries', 'roles'));
     }
 
     /**
@@ -129,7 +124,8 @@ class AdminUsersController extends Controller
             'name' => 'string|min:3|max:255',
             'username' => ['required', Rule::unique('users')->ignore($id), 'string','min:2','max:255'],
             'email' => ['required', Rule::unique('users')->ignore($id), 'email', 'string','min:2','max:255'],
-            'country' => 'required|string'
+            'country' => 'required|string',
+            'role' => 'required|string'
         ]);
 
         $user = User::findOrFail($id);
@@ -147,9 +143,6 @@ class AdminUsersController extends Controller
         }
 
         if($request->hasFile('avatar')) {
-            /* Validator::make($request->avatar, [
-                'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-            ]); */
             $image = $request->file('avatar');
             $extension = $request->file('avatar')->extension();
             $newName = uniqid() . "." . $extension;
@@ -158,6 +151,7 @@ class AdminUsersController extends Controller
         }
 
         if($user->save()) {
+            $user->syncRoles([(int)$request->role]);
             \Flash::success("El Usuario $user->username se ha creado con éxito.");
             return redirect()->route('admin.users.show', $id);
         } else {
@@ -179,7 +173,7 @@ class AdminUsersController extends Controller
 
     public function search(Request $request) {
         $query = $request->input('query');
-        $users = User::where('username', 'LIKE', '%'. $query .'%')->paginate(15);
+        $users = User::with('country', 'roles')->where('username', 'LIKE', '%'. $query .'%')->paginate(15);
         return $users;
     }
 
@@ -192,7 +186,7 @@ class AdminUsersController extends Controller
             $user->active = 1;
             $user->save();
         }
-        $users = User::paginate(15);
+        $users = User::with('country', 'roles')->paginate(15);
         return view('admin.users.index', compact('users'));
     }
 }

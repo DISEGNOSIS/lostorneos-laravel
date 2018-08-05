@@ -18,6 +18,10 @@
                         <h2>Usuario: &nbsp; <span>{{ Auth::user()->username }}</span></h2>
                         <h2>e-Mail: &nbsp; <span>{{ Auth::user()->email }}</span></h2>
                         <h2>País: &nbsp; <span>{{ Auth::user()->country->name }}</span></h2>
+                        @if(Auth::user()->score)
+                            <h2>Puntuación: &nbsp; <span>{{ Auth::user()->score }}</span></h2>
+                        @endif
+                        <h2>Rol: &nbsp; <span>{{ Auth::user()->roles[0]->display_name }}</span></h2>
                     </div>
                 </div>
 			</section>

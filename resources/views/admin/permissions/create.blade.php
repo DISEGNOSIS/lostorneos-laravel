@@ -6,6 +6,10 @@
 
 @section('content')
 	<article>
+        <div class="botones">
+            <button type="submit" form="admin-permissions-create">Guardar</button>
+            <a href="{{ route('admin.permissions') }}">Cancelar</a>
+        </div>
         <h1>Crear un Permiso</h1>
         @include('flash::message')
         <section class="formulario">
@@ -34,10 +38,6 @@
                             <strong>{{ $errors->first('description') }}</strong>
                         </span>
                     @endif
-                </div>
-                <div class="campo">
-                    <button type="submit">Guardar</button>
-                    <button type="reset">Borrar</button>
                 </div>
             </form>
         </section>

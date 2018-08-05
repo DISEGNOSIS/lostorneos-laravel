@@ -66,7 +66,7 @@ main {
 	align-self: stretch;
 	display: flex;
 	flex-flow: column wrap;
-	justify-content: center;
+	justify-content: flex-start;
 	width: 98%;
 	margin: 13px 1% 33px;
 	background: rgba(0,0,0,0.8);
@@ -803,10 +803,11 @@ footer .fecha {
 }
 
 .container {
-	display: block;
+	display: flex;
 	position: relative;
-	padding-left: 35px;
-	margin-bottom: 12px;
+	padding-left: 33px;
+	margin-bottom: 13px;
+	padding-right: 47px;
 	cursor: pointer;
 	font-size: 1em;
 	-webkit-user-select: none;
@@ -816,7 +817,7 @@ footer .fecha {
 }
 
 .container:first-child {
-	margin:0 6% 0 17%;
+	margin:0 2% 0 25%;
 }
 
 .container input {
@@ -862,9 +863,60 @@ footer .fecha {
 	background: white;
 }
 
+.check-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+.container:hover input ~ .check-box {
+    background-color: #FFA933;
+}
+
+.container input:checked ~ .check-box {
+    background-color: #FF8A07;
+}
+
+.check-box:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .check-box:after {
+    display: block;
+}
+
+.container .check-box:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
 .checkbox {
 	display: flex;
 	flex-direction: row wrap;
+}
+
+.datos-checkbox .container:first-child {
+	margin:0;
+}
+
+.datos-checkbox {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	width: 70%;
+	margin: 0 15% 33px;
 }
 
 .hidden {
@@ -952,13 +1004,9 @@ footer .fecha {
 	color: #ca0000;
 }
 
-.heading {
-	display: flex;
-
-}
-
-.heading h1 {
-	flex-grow: 1;
+.botones {
+	float: right;
+	align-self: flex-end;
 }
 
 .botones button, .botones a {

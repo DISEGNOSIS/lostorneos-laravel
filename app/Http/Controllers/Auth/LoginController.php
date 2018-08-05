@@ -47,10 +47,16 @@ class LoginController extends Controller
 
     public function authenticated(Request $request, $user)
     {
-        $user->last_sign_in = Carbon::now();
-        $user->save();
-        if($user->hasRole('owner') || $user->hasRole('admin')) {
-            return redirect()->route('admin');
+        if($user->active) {
+            $user->last_sign_in = Carbon::now();
+            $user->save();
+            if($user->hasRole('owner') || $user->hasRole('admin')) {
+                return redirect()->route('admin');
+            }
+        } else {
+            dd('No está activo');
+            \Flash::error('El Usuario: ' . $user->username .' no se encuentra activado: ');
+            return redirect()->route('login');
         }
     }
 

@@ -14,8 +14,8 @@
     }
     
     function checkedSetPassword() {
-        password.style.display = 'inherit';
-        passwordConfirmation.style.display = 'inherit';
+        password.style.display = 'flex';
+        passwordConfirmation.style.display = 'flex';
     }
 
     

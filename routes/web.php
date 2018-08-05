@@ -48,6 +48,7 @@ Route::prefix('admin')->middleware('role:owner|admin|editor')->group(function() 
     Route::get('/roles/{role}', 'AdminRolesController@show')->name('admin.roles.show');
     Route::get('/roles/{role}/edit', 'AdminRolesController@edit')->name('admin.roles.edit');
     Route::put('/roles/{role}', 'AdminRolesController@update')->name('admin.roles.update');
+    Route::delete('/roles/{role}', 'AdminRolesController@destroy')->name('admin.roles.destroy');
 
     Route::get('/permissions', 'AdminPermissionsController@index')->name('admin.permissions');
     Route::post('/permissions', 'AdminPermissionsController@store')->name('admin.permissions.store');
@@ -55,5 +56,6 @@ Route::prefix('admin')->middleware('role:owner|admin|editor')->group(function() 
     Route::get('/permissions/{permission}', 'AdminPermissionsController@show')->name('admin.permissions.show');
     Route::get('/permissions/{permission}/edit', 'AdminPermissionsController@edit')->name('admin.permissions.edit');
     Route::put('/permissions/{permission}', 'AdminPermissionsController@update')->name('admin.permissions.update');
+    Route::delete('/permissions/{permission}', 'AdminPermissionsController@destroy')->name('admin.permissions.destroy');
 
 });

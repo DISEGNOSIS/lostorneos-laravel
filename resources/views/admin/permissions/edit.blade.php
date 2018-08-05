@@ -6,17 +6,18 @@
 
 @section('content')
 	<article>
-        <h1>Editar un Permiso</h1>
-        @include('flash::message')
         <div class="botones">
             <button type="submit" form="admin-permissions-edit">Guardar</button>
             <a href="{{ route('admin.permissions') }}">Cancelar</a>
         </div>
+        <h1>Editar un Permiso</h1>
+        @include('flash::message')
         <section class="formulario">
             <form id="admin-permissions-edit" action="{{ route('admin.permissions.update', $permission->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="campo">
+                    <label for="display_name">Nombre:</label>
                     <input id="display_name" type="text" class="{{ $errors->has('display_name') ? ' is-invalid' : '' }}" name="display_name" value="{{ $permission->display_name ? $permission->display_name : old('display_name') }}" placeholder="Título" autofocus/>
                     @if($errors->has('display_name'))
                         <span class="error" role="alert">
@@ -25,7 +26,8 @@
                     @endif
                 </div>
                 <div class="campo">
-                    <input id="name" type="text" class="{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $permission->name ? $permission->name : old('name') }}" placeholder="Slug" autofocus/>
+                    <label for="name">Slug:</label>
+                    <input id="name" type="text" class="{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $permission->name ? $permission->name : old('name') }}" placeholder="Slug" autofocus disabled/>
                     @if($errors->has('name'))
                         <span class="error" role="alert">
                             <strong>{{ $errors->first('name') }}</strong>
@@ -33,6 +35,7 @@
                     @endif
                 </div>
                 <div class="campo">
+                    <label for="description">Descripción:</label>
                     <textarea id="description" class="{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" placeholder="Description" autofocus>{{ $permission->description ? $permission->description : old('description') }}</textarea>
                     @if($errors->has('description'))
                         <span class="error" role="alert">

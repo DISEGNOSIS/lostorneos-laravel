@@ -55,6 +55,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'name' => 'string|min:3|max:255',
             'username' => 'required|unique:users|string|max:255',
             'email' => 'required|unique:users|email|string|max:255',
             'password' => 'required|string|min:6|confirmed',
@@ -80,13 +81,23 @@ class RegisterController extends Controller
         } else {
             $path = 'default.jpg';
         }
-        return User::create([
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'country_id' => $data['country'],
-            'avatar' => $path
-        ]);
+
+        $user = new User();
+        $user->name = $data['name'];
+        $user->username = $data['username'];
+        $user->email = $data['email'];
+        $user->password = Hash::make($data['password']);
+        $user->country_id = $data['country'];
+        $user->avatar = $path;
+        if($user->save()) {
+            $user->attachRole(6);
+            \Flash::success("El Usuario $user->username se ha creado con éxito.");
+            return redirect()->route('admin.users');
+        } else {
+            \Flash::error("El Usuario no se ha podido guardar. Por favor intentalo nuevamente.");
+            return back();
+        }
+
     }
     
 }

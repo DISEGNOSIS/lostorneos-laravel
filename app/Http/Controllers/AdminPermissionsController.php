@@ -2,7 +2,6 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Permission;
-use Session;
 
 class AdminPermissionsController extends Controller
 {
@@ -43,7 +42,7 @@ class AdminPermissionsController extends Controller
         $permission->display_name = $request->display_name;
         $permission->description = $request->description;
         $permission->save();
-        Session::flash('success', '¡El Permiso fue agregado exitosamente!');
+        \Flash::success('¡El Permiso fue agregado exitosamente!');
         return redirect()->route('admin.permissions');
     }
     /**
@@ -85,7 +84,7 @@ class AdminPermissionsController extends Controller
       $permission->display_name = $request->display_name;
       $permission->description = $request->description;
       $permission->save();
-      Session::flash('success', 'Se ha actualizado el Permiso: '. $permission->display_name);
+      \Flash::success('Se ha actualizado el Permiso: '. $permission->display_name);
       return redirect()->route('admin.permissions.show', $id);
     }
     /**
@@ -96,6 +95,6 @@ class AdminPermissionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd($id);
     }
 }

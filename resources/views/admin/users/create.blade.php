@@ -50,6 +50,18 @@
                 	</select>
                 </div>
                 <div class="campo">
+                    <select name="role">
+                        <option value="" disabled>Rol</option>
+                        @foreach($roles as $role)
+                            @if($role->id == 6)
+                                <option value="{{ $role->id }}" selected>{{ $role->display_name }}</option>
+                            @else
+                                <option value="{{ $role->id }}">{{ $role->display_name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
+                <div class="campo">
                     <input id="score" type="text" class="{{ $errors->has('score') ? ' is-invalid' : '' }}" name="score" value="{{ old('score') }}" placeholder="Puntuación" autofocus/>
 
                     @if($errors->has('score'))

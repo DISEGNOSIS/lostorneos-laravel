@@ -5,14 +5,12 @@
 @endsection
 
 @section('content')
-    <div class="heading">
-        <h1>Editar Usuario</h1>
-        @include('flash::message')
-        <div class="botones">
-            <button type="submit" form="admin-users-edit">Guardar</button>
-            <a href="{{ route('admin.users') }}">Cancelar</a>
-        </div>
+    <div class="botones">
+        <button type="submit" form="admin-users-edit">Guardar</button>
+        <a href="{{ route('admin.users') }}">Cancelar</a>
     </div>
+    <h1>Editar Usuario</h1>
+    @include('flash::message')
     <article class="col-2">
         <section class="left">
             <img src="{{ asset('storage/img/avatar/' . $user->avatar) }}" alt="Foto Perfil" class="imagen-usuario" />
@@ -64,6 +62,19 @@
                             @endif
                        @endforeach
                 	</select>
+                </div>
+                <div class="campo">
+                    <label for="role">Rol:</label>
+                    <select name="role">
+                        <option value="" disabled>Rol</option>
+                        @foreach($roles as $role)
+                            @if($user->roles[0]->id == $role->id)
+                                <option value="{{ $role->id }}" selected>{{ $role->display_name }}</option>
+                            @else
+                                <option value="{{ $role->id }}">{{ $role->display_name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
                 </div>
                 <div class="campo">
                     <label for="score">Puntuación:</label>

@@ -26,10 +26,17 @@ class UsersTableSeeder extends Seeder
 			'updated_at'	=>	Carbon::now()
         ]);
 
-        $guada = User::findOrFail(1);
-        $guada->attachRole(1);
-
-
         factory(User::class, 49)->create();
+
+        $users = User::all();
+        foreach($users as $user) {
+            if($user->id == 1) {
+                $user->attachRole(1);
+            } else {
+                $user->attachRole(6);
+            }
+
+        }
+
     }
 }

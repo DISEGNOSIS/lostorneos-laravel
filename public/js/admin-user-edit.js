@@ -10,14 +10,12 @@
     changeAvatar.addEventListener('click', checkedChangeAvatar);
     
     function checkedChangePassword() {
-        console.log('pass');
-        password.style.display = 'inherit';
-        passwordConfirmation.style.display = 'inherit';
+        password.style.display = 'flex';
+        passwordConfirmation.style.display = 'flex';
     }
 
     function checkedChangeAvatar() {
-        console.log('avatar');
-        avatar.style.display = 'inherit';
+        avatar.style.display = 'flex';
     }
     
 })();

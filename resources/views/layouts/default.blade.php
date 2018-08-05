@@ -19,14 +19,15 @@
  	<div class="fila">
  		<div class="fecha">
 			<time>
-				<span>\Carbon\Carbon::now()->toTimeString()hs</span><br/>
-				<span>\Carbon\Carbon::now()->format('ljS\\deFY')</span>
-				{{-- <?php
-				$dias=array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
+				<?php setlocale(LC_TIME, 'Spanish'); ?>
+				<span>{{ \Carbon\Carbon::now()->toTimeString() }}hs</span><br/>
+				<span>{{ \Carbon\Carbon::now()->format('l jS \\of F Y') }}</span>
+				<?php
+				/* $dias=array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
 				$meses=array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 				echo "<span>".date("H:i")."hs</span><br>";
-				echo "<span>".$dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y')."</span";
-				?> --}}
+				echo "<span>".$dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y')."</span"; */
+				?>
 			</time>
 		</div>
 		<div id="logo">

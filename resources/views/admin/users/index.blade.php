@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    
 	<article>
         <h1 class="listado">Usuarios:</h1>
         @include('layouts.admin-partials.search')
@@ -23,6 +24,7 @@
                         <th>País</th>
                         <th>Creado el</th>
                         <th>Último Ingreso</th>
+                        <th>Rol</th>
                         <th>Editar</th>
                         <th>Borrar</th>
                     </tr>
@@ -48,6 +50,7 @@
                             <td>
                                 {{ $user->last_sign_in ? \Carbon\Carbon::parse($user->last_sign_in)->diffForHumans() : '-' }}
                             </td>
+                            <td>{{ $user->roles[0]->display_name }}</td>
                             <td>
                                 <a class="edit" href="{{ route('admin.users.edit', $user->id) }}"><i class="fas fa-edit"></i></a>
                             </td>

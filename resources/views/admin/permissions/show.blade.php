@@ -10,7 +10,7 @@
             <a href="{{ route('admin.permissions.edit', $permission->id) }}">Editar</a>
         </div>
         <h1>Detalles del Permiso: {{ $permission->display_name }}</h1>
-        <section class="formulario">
+        <section>
             <div class="mi-cuenta">
                 <div class="datos-usuario">
                     <h2>ID: &nbsp; <span>{{ $permission->id }}</span></h2>

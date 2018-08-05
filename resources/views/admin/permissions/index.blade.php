@@ -7,7 +7,7 @@
 @section('content')
 <article>
         <h1 class="listado">Permisos:</h1>
-        @include('layouts.admin-partials.search')
+        {{-- @include('layouts.admin-partials.search') --}}
         <div class="new">
             <a href="{{ route('admin.permissions.create') }}"><i class="fas fa-plus-square"></i> Nuevo Permiso</a>
         </div>

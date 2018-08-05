@@ -6,18 +6,19 @@
 
 @section('content')
 	<article>
-        <h1>Editar un Rol</h1>
-        @include('flash::message')
         <div class="botones">
             <button type="submit" form="admin-roles-edit">Guardar</button>
             <a href="{{ route('admin.roles') }}">Cancelar</a>
         </div>
+        <h1>Editar un Rol</h1>
+        @include('flash::message')
         <section class="formulario">
-            <form id="admin-roles-edit" action="{{ route('admin.roles.update', $rol->id) }}" method="POST">
+            <form id="admin-roles-edit" action="{{ route('admin.roles.update', $role->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="campo">
-                    <input id="display_name" type="text" class="{{ $errors->has('display_name') ? ' is-invalid' : '' }}" name="display_name" value="{{ $rol->display_name ? $rol->display_name : old('display_name') }}" placeholder="Título" autofocus/>
+                    <label for="display_name">Nombre:</label>
+                    <input id="display_name" type="text" class="{{ $errors->has('display_name') ? ' is-invalid' : '' }}" name="display_name" value="{{ $role->display_name ? $role->display_name : old('display_name') }}" placeholder="Título" autofocus/>
                     @if($errors->has('display_name'))
                         <span class="error" role="alert">
                             <strong>{{ $errors->first('display_name') }}</strong>
@@ -25,7 +26,8 @@
                     @endif
                 </div>
                 <div class="campo">
-                    <input id="name" type="text" class="{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $rol->name ? $rol->name : old('name') }}" placeholder="Slug" autofocus/>
+                    <label for="name">Slug:</label>
+                    <input id="name" type="text" class="{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $role->name ? $role->name : old('name') }}" placeholder="Slug" autofocus disabled/>
                     @if($errors->has('name'))
                         <span class="error" role="alert">
                             <strong>{{ $errors->first('name') }}</strong>
@@ -33,12 +35,22 @@
                     @endif
                 </div>
                 <div class="campo">
-                    <textarea id="description" class="{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" placeholder="Description" autofocus>{{ $rol->description ? $rol->description : old('description') }}</textarea>
+                    <label for="description">Descripción:</label>
+                    <textarea id="description" class="{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" placeholder="Description" autofocus>{{ $role->description ? $role->description : old('description') }}</textarea>
                     @if($errors->has('description'))
                         <span class="error" role="alert">
                             <strong>{{ $errors->first('description') }}</strong>
                         </span>
                     @endif
+                </div>
+                <h2>Permisos:</h2>
+                <div class="datos-checkbox">
+                    @foreach($permissions as $permission)
+                        <label class="container">{{ $permission->display_name }}
+                            <input type="checkbox" name="permissions[]" value="{{ $permission->id }}" {{ $role->permissions->contains($permission->id) ? 'checked="checked"' : '' }}>
+                            <span class="check-box"></span>
+                        </label>
+                    @endforeach
                 </div>
             </form>
         </section>

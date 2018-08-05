@@ -1,20 +1,16 @@
 (function() {
 
-	const form = document.forms[0];
 	const pagination = document.querySelector('.pagination');
 	const input = document.querySelector('#query');
 	const tbody = document.querySelector('tbody');
+	const content = tbody.innerHTML;
 
     input.addEventListener('keyup', search);
-
-	form.onsubmit = function(ev) {
-		ev.preventDefault();
-	}
 
     function search() {
 		var result = '';
 		var query = input.value;
-		if(query != '') {
+		if(query.length > 0) {
 			if(window.XMLHttpRequest) {
 				// code for IE7+, Firefox, Chrome, Opera, Safari
 				xmlhttp = new XMLHttpRequest();
@@ -29,7 +25,6 @@
 				if(!response.error) {
 					data = response.data;
 					data.forEach(function(user) {
-						console.log(user.country_id, user);
 						result += '<tr>';
 						result += '<td><a href="users/' + user.id + '/active"><i class="fas {{ ' + (user.active ? 'fa-check' : 'fa-times') + ' }}"></i></a></td>';
 						result += '<td>' + user.id + '</td>';
@@ -67,29 +62,11 @@
 			xmlhttp.open("GET","/admin/users/search?query="+query,true);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlhttp.send();
-		} else {
+		} else if(query == '') {
+			tbody.innerHTML = content;
 			pagination.style.display = 'flex';
 		}
+		
     }
 
 })();
-
-
-
-
-/* $(document).ready(function(){
-	$('#query').on('keyup',function(){
-		var value = $(this).val();
-		console.log('entre');
-		console.log(value);
-		$.ajax({
-			type: 'GET',
-			url: '/admin/users/search',
-			data:{ 'query':value },
-			success:function(data) {
-				console.log(data);
-				$('tbody').html(data);
-			}	
-		});	 
-	});
-}); */
