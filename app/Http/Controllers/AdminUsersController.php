@@ -17,7 +17,18 @@ class AdminUsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {       
+    {   
+        /* $id=$request->get('id');
+        $users = User::paginate(15);
+
+        if(!$users->isEmpty()){
+            $returnHTML = view('admin.users.index', compact('users'))->render();
+            return response()->json($returnHTML);
+        } else{
+            return response()->json(null);
+        } */
+
+
         $users = User::paginate(15);
         return view('admin.users.index', compact('users'));
     }

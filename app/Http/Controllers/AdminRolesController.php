@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Role;
+use App\Rol;
 
 class AdminRolesController extends Controller
 {
@@ -52,7 +52,8 @@ class AdminRolesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $rol = Rol::findOrFail($id);
+        return view('admin.roles.edit', compact('rol'));
     }
     /**
      * Update the specified resource in storage.

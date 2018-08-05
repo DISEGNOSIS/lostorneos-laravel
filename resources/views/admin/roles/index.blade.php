@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<article>
+    <article>
         <h1 class="listado">Roles:</h1>
         @include('layouts.admin-partials.search')
         <div class="new">
@@ -51,6 +51,6 @@
     @endif
 @endsection
 
-@section('scripts')
+{{-- @section('scripts')
     <script src="{{ asset('js/ajax-roles.js') }}"></script>
-@endsection
+@endsection --}}

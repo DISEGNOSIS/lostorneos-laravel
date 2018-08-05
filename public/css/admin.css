@@ -677,6 +677,7 @@ footer .fecha {
 	width: 100%;
 	font-size: 0.9em;
 	text-align: center;
+	margin-bottom: 33px;
 }
 
 .table tr {
@@ -994,6 +995,10 @@ footer .fecha {
 
 .search {
 	float: left;
+}
+
+.search i {
+	padding-left: -66px;
 }
 
 .search input {

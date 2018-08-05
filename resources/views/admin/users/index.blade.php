@@ -66,9 +66,11 @@
             <h2>No se han encontrado usuarios</h2>    
         @endif
     </article>
-    @if($users->count() > 0)
-        {{ $users->links() }}
-    @endif
+    <div id="pagination">
+        @if($users->count() > 0)
+            {{ $users->links() }}
+        @endif
+    </div>
 @endsection
 
 @section('scripts')

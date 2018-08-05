@@ -4,7 +4,7 @@ namespace App;
 
 use Laratrust\Models\LaratrustRole;
 
-class Role extends LaratrustRole
+class Rol extends LaratrustRole
 {
     protected $guarded = [];
 }
