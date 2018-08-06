@@ -52,6 +52,8 @@
                 </div>
                 <div class="campo">
                     <label for="country">País:</label>
+                </div>
+                <div class="custom-select">
                     <select name="country">
                        <option value="" disabled>País</option>
                        @foreach($countries as $country)
@@ -65,6 +67,8 @@
                 </div>
                 <div class="campo">
                     <label for="role">Rol:</label>
+                </div>
+                <div class="custom-select">
                     <select name="role">
                         <option value="" disabled>Rol</option>
                         @foreach($roles as $role)
@@ -111,4 +115,5 @@
 
 @section('scripts')
     <script src="/js/admin-user-edit.js"></script>
+    <script src="/js/select.js"></script>
 @endsection

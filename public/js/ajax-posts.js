@@ -26,29 +26,30 @@
 				}
 				if(!response.error) {
 					data = response.data;
-					data.forEach(function(user) {
+					data.forEach(function(post) {
 						result += '<tr>';
-						result += '<td><a href="users/' + user.id + '/active"><i class="fas {{ ' + (user.active ? 'fa-check' : 'fa-times') + ' }}"></i></a></td>';
-						result += '<td>' + user.id + '</td>';
-						result += '<td><a href="users/' + user.id + '">' + (user.name ? user.name : '') + '</a></td>';
-						result += '<td><a href="users/' + user.id + '">' + user.username + '</a></td>';
-						result += '<td>' + user.email + '</td>';
-						result += '<td>' + user.country_id + '</td>';
-						result += '<td>' + user.created_at + '</td>';
-						result += '<td>' + user.last_sign_in + '</td>';
-						result += '<td>' + user.rol + '</td>';
-						result += '<td><a class="edit" href="users/' + user.id + '/edit"><i class="fas fa-edit"></i></a></td>';
-						result += '<td><form action="users/' + user.id + '" method="POST">'
+						result += '<td><a href="posts/' + post.id + '/active"><i class="fas {{ ' + (post.active ? 'fa-check' : 'fa-times') + ' }}"></i></a></td>';
+						result += '<td>' + post.id + '</td>';
+						result += '<td><a href="posts/' + post.id + '">' + (post.title ? post.title : '') + '</a></td>';
+						result += '<td><a href="categories/' + post.category.id + '">' + post.category.name + '</a></td>';
+						result += '<td>' + post.user.name + '</td>';
+						result += '<td>' + post.published_at + '</td>';
+						result += '<td>' + post.created_at + '</td>';
+						result += '<td><a class="edit" href="posts/' + post.id + '/edit"><i class="fas fa-edit"></i></a></td>';
+						result += '<td><form action="posts/' + post.id + '" method="POST">'
 						/* result += "@csrf @method('DELETE')"; */
 						result += '<button type="submit" class="delete" href=""><i class="fas fa-trash-alt"></i></button></form>';
 						result += '</tr>';
 					});
 					tbody.innerHTML = result;
-					pagination.style.display = 'none';
+					console.log(response);
+					if(data.length <= 15) {
+						pagination.style.display = 'none';
+					}
 
 
 
-						/* result += '<td><a href="users/' + user.id + '/active"><i class="fas {{ ' + (user.active ? 'fa-check' : 'fa-times') + ' }}"></i></a></td>';
+						/* result += '<td><a href="posts/' + user.id + '/active"><i class="fas {{ ' + (user.active ? 'fa-check' : 'fa-times') + ' }}"></i></a></td>';
 						result += '<td>' + user.id + '</td>';
 						result += '<td><a href="users/' + user.id + '">' + user.name ? user.name : '' + '</a></td>';
 						result += '<td><a href="users/' + user.id + '">' + user.username + '</a></td>';
@@ -62,7 +63,7 @@
 
 			}
 			/* xmlhttp.open("GET","/admin/users/search",true); */
-			xmlhttp.open("GET","/admin/users/search?query="+query,true);
+			xmlhttp.open("GET","/admin/posts/search?query="+query,true);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlhttp.send();
 		} else if(query == '') {
@@ -76,6 +77,5 @@
 		input.value = '';
 		search();
 	}
-
 
 })();

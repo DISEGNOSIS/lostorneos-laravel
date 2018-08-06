@@ -22,7 +22,7 @@
                         <th>Usuario</th>
                         <th>e-Mail</th>
                         <th>País</th>
-                        <th>Creado el</th>
+                        <th>Creado</th>
                         <th>Último Ingreso</th>
                         <th>Rol</th>
                         <th>Editar</th>

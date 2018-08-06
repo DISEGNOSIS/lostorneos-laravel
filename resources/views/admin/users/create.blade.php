@@ -37,7 +37,7 @@
                         </span>
                     @endif
                 </div>
-                <div class="campo">
+                <div class="custom-select">
                     <select name="country">
                        <option value="" disabled>País</option>
                        @foreach($countries as $country)
@@ -49,7 +49,7 @@
                        @endforeach
                 	</select>
                 </div>
-                <div class="campo">
+                <div class="custom-select">
                     <select name="role">
                         <option value="" disabled>Rol</option>
                         @foreach($roles as $role)
@@ -103,4 +103,5 @@
 
 @section('scripts')
     <script src="/js/admin-user-create.js"></script>
+    <script src="/js/select.js"></script>
 @endsection

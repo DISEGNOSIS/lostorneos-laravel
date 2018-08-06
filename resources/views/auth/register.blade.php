@@ -50,7 +50,7 @@
 					<div class="campo">
 						<input id="password-confirm" type="password" name="password_confirmation" placeholder="Confirmar Contraseña" required>
 					</div>
-					<div class="campo">
+					<div class="custom-select">
 						<select name="country" required>
 						   <option value="" disabled>País</option>
 						   @foreach($countries as $country)
@@ -82,4 +82,8 @@
 			</section>
 		</article>
 	</main>
+@endsection
+
+@section('scripts')
+    <script src="/js/select.js"></script>
 @endsection

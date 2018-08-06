@@ -10,6 +10,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet"/>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet"/> 
 	<link rel="icon" href="/img/favicon.png" type="image/x-icon"/>
+	@yield('head')
   <!--[if lt IE 9]>
   	<script src="js/html5shiv.js"></script>
 	<![endif]-->

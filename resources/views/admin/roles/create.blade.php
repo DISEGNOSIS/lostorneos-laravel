@@ -24,15 +24,7 @@
                     @endif
                 </div>
                 <div class="campo">
-                    <input id="name" type="text" class="{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="Slug" autofocus/>
-                    @if($errors->has('name'))
-                        <span class="error" role="alert">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                    @endif
-                </div>
-                <div class="campo">
-                    <textarea id="description" class="{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" placeholder="Description" autofocus>{{ old('description') }}</textarea>
+                    <textarea id="description" class="{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" placeholder="Descripción" autofocus>{{ old('description') }}</textarea>
                     @if($errors->has('description'))
                         <span class="error" role="alert">
                             <strong>{{ $errors->first('description') }}</strong>

@@ -152,6 +152,7 @@ return [
         Laratrust\LaratrustServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Webpatser\Countries\CountriesServiceProvider::class,
+        DevMarketer\EasyNav\EasyNavServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -218,6 +219,7 @@ return [
         'Laratrust'   => Laratrust\LaratrustFacade::class,
         'Flash' => Laracasts\Flash\Flash::class,
         'Countries' => Webpatser\Countries\CountriesFacade::class,
+        'Nav' => DevMarketer\EasyNav\EasyNavFacade::class,        
 
     ],
 

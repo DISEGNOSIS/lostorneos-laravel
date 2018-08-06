@@ -58,4 +58,16 @@ Route::prefix('admin')->middleware('role:owner|admin|editor')->group(function() 
     Route::put('/permissions/{permission}', 'AdminPermissionsController@update')->name('admin.permissions.update');
     Route::delete('/permissions/{permission}', 'AdminPermissionsController@destroy')->name('admin.permissions.destroy');
 
+    Route::get('/posts', 'AdminPostsController@index')->name('admin.posts');
+    Route::post('/posts', 'AdminPostsController@store')->name('admin.posts.store');
+    Route::get('/posts/search', 'AdminPostsController@search')->name('admin.posts.search');
+    Route::get('/posts/create', 'AdminPostsController@create')->name('admin.posts.create');
+    Route::post('/posts/save', 'AdminPostsController@save')->name('admin.posts.save');
+    Route::get('/posts/{post}', 'AdminPostsController@show')->name('admin.posts.show');
+    Route::get('/posts/{post}/edit', 'AdminPostsController@edit')->name('admin.posts.edit');
+    Route::get('/posts/{post}/active', 'AdminPostsController@active')->name('admin.posts.active');
+    Route::put('/posts/{post}', 'AdminPostsController@update')->name('admin.posts.update');
+    Route::delete('/posts/{post}', 'AdminPostsController@destroy')->name('admin.posts.destroy');
+
+
 });

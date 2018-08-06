@@ -505,6 +505,63 @@ footer .fecha {
 	text-shadow: 1px 1px 2px #fff;
 }
 
+.custom-select {
+	position: relative;
+	font-family: 'Roboto', sans-serif;
+	width: 50.3%;
+	margin: 0 24.9% 13px;
+}
+.custom-select select {
+	display: none; 
+}
+.select-selected {
+	background-color: #FF8A07;
+}
+
+.select-selected:after {
+	position: absolute;
+	content: "";
+	top: 14px;
+	right: 10px;
+	width: 0;
+	height: 0;
+	border: 6px solid transparent;
+	border-color: #fff transparent transparent transparent;
+}
+
+.select-selected.select-arrow-active:after {
+	border-color: transparent transparent #fff transparent;
+	top: 7px;
+}
+
+.select-items div,.select-selected {
+	color: #ffffff;
+	padding: 8px 16px;
+	border: 1px solid transparent;
+	border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+	cursor: pointer;
+	user-select: none;
+}
+
+.select-items {
+	position: absolute;
+	background-color: #FFA933;
+	top: 100%;
+	left: 0;
+	right: 0;
+	z-index: 99;
+}
+
+.select-hide {
+	display: none;
+}
+.select-items div:hover, .same-as-selected {
+	color: #111;
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+
 
 @media only screen and (max-width: 1368px) {
 

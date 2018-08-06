@@ -14,7 +14,7 @@ $factory->define(Post::class, function (Faker $faker) {
         'title' => $faker->sentence,
         'slug' => $faker->slug,
         'content' => $faker->paragraph,
-        'image' => '/img/avatar/default.jpg',
+        'image' => 'default.jpg',
         'category_id' => $faker->numberBetween(1, $totalCategories),
         'user_id' => $faker->numberBetween(1, $totalUsers),
         'game_id' => $faker->numberBetween(1, $totalGames)
