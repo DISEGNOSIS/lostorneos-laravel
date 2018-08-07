@@ -17,10 +17,10 @@
                 @foreach($posts as $post)
                     <div class="blog-post">
                         <h2 class="blog-post-title">
-                            <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
+                            <a href="{{ route('posts.show', $post->slug) }}">{{ $post->title }}</a>
                         </h2>
                         <div class="blog-post-info">
-                            <span class="blog-post-category"><a href="/posts/{{ $post->slug }}">{{ $post->category->name }}</a></span>
+                            <span class="blog-post-category"><a href="{{ route('posts.show', $post->slug) }}">{{ $post->category->name }}</a></span>
                             <span class="blog-post-meta">
                                 {{ $post->user->username }} ::
                                 {{ \Carbon\Carbon::parse($post->published_at)->diffForHumans() }}
@@ -34,7 +34,7 @@
                         <div class="fr-view">
                             {!! str_limit(strip_tags($post->content), 333) !!}
                             @if(strlen(strip_tags($post->content)) > 333)                        
-                                <a href="/posts/{{ $post->slug }}" class="read-more">
+                                <a href="{{ route('posts.show', $post->slug) }}" class="read-more">
                                     <i class="fas fa-arrow-alt-circle-right"></i>
                                 </a>
                             @endif

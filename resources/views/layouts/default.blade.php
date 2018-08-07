@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
 	<title>@yield('title')</title>
-	<link href="css/style.css" rel="stylesheet"/>
+	<link href="/css/style.css" rel="stylesheet"/>
 	<link href="fonts/css/fontawesome-all.css" rel="stylesheet"/>
 	<link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet"/>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet"/>
@@ -86,10 +86,10 @@
 		</div>
 	</footer>
 </body>
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/menu.js"></script>
-<script src="js/faq.js"></script>
-<script src="js/reloj.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/menu.js"></script>
+<script src="/js/faq.js"></script>
+<script src="/js/reloj.js"></script>
 <script>
 	$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 </script>

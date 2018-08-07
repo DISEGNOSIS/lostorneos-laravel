@@ -174,12 +174,6 @@ class AdminUsersController extends Controller
         return back();
     }
 
-    public function search(Request $request) {
-        $query = $request->input('query');
-        $users = User::with('country', 'roles')->where('username', 'LIKE', '%'. $query .'%')->paginate(15);
-        return $users;
-    }
-
     public function active($id) {
         $user = User::findOrFail($id);
         if($user->active) {

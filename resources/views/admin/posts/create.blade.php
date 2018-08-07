@@ -67,6 +67,15 @@
                 <div class="campo">
                     <textarea id="my-editor" class="{{ $errors->has('content') ? ' error' : '' }}" name="content" placeholder="Contenido..." rows="10" autofocus required>{{ old('content') }}</textarea>
                 </div>
+                <h2>Tags:</h2>
+                <div class="datos-checkbox">
+                    @foreach($tags as $tag)
+                        <label class="container">{{ $tag->name }}
+                            <input type="checkbox" name="tags[]" value="{{ $tag->id }}">
+                            <span class="check-box"></span>
+                        </label>
+                    @endforeach
+                </div>
             </form>
         </section>
 	</article>

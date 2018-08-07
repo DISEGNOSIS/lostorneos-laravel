@@ -90,7 +90,7 @@
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/js/menu.js"></script>
 <script src="/js/faq.js"></script>
-<script src="js/reloj.js"></script>
+<script src="/js/reloj.js"></script>
 <script>
 	$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 </script>

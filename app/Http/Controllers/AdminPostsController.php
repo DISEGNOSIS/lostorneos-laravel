@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Storage;
 use App\Post;
 use App\Category;
+use App\Tag;
 use Carbon\Carbon;
 use Laracasts\Flash\Flash;
 
@@ -30,7 +31,8 @@ class AdminPostsController extends Controller
      */
     public function create() {
         $categories = Category::all();
-        return view('admin.posts.create', compact('categories'));
+        $tags = Tag::all();
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
     
     /**
@@ -70,6 +72,9 @@ class AdminPostsController extends Controller
         }
         
         if($post->save()) {
+            if($request->tags) {
+                $post->tags()->toggle($request->tags);
+            }
             Flash::success("La Noticia $post->title se ha creado con éxito.");
             return redirect()->route('admin.posts');
         } else {
@@ -98,7 +103,8 @@ class AdminPostsController extends Controller
     {
         $post = Post::findOrFail($id);
         $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'categories'));
+        $tags = Tag::all();
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**

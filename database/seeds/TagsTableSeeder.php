@@ -13,19 +13,19 @@ class TagsTableSeeder extends Seeder
     public function run()
     {
         DB::table('tags')->insert([
-            'name' => 'Novedades',
+            'name' => 'PC',
             'created_at'	=>	Carbon::now(),
 			'updated_at'	=>	Carbon::now()
         ]);
 
         DB::table('tags')->insert([
-            'name' => 'Video Juegos',
+            'name' => 'XBOX',
             'created_at'	=>	Carbon::now(),
 			'updated_at'	=>	Carbon::now()
         ]);
 
         DB::table('tags')->insert([
-            'name' => 'eSports',
+            'name' => 'PS',
             'created_at'	=>	Carbon::now(),
 			'updated_at'	=>	Carbon::now()
         ]);

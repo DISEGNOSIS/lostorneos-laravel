@@ -32,7 +32,11 @@ Route::get('login/discord/callback', 'Auth\LoginController@handleDiscordCallback
 Route::get('login/github', 'Auth\LoginController@redirectToGitHub')->name('github');
 Route::get('login/github/callback', 'Auth\LoginController@handleGitHubCallback');
 
+
+
+
 Route::prefix('admin')->middleware('role:owner|admin|editor')->group(function() {
+
     Route::get('/', 'AdminController@index')->name('admin');
     
     Route::get('/users', 'AdminUsersController@index')->name('admin.users');
@@ -71,5 +75,21 @@ Route::prefix('admin')->middleware('role:owner|admin|editor')->group(function() 
     Route::get('/posts/{post}/active', 'AdminPostsController@active')->name('admin.posts.active');
     Route::put('/posts/{post}', 'AdminPostsController@update')->name('admin.posts.update');
     Route::delete('/posts/{post}', 'AdminPostsController@destroy')->name('admin.posts.destroy');
+
+    Route::get('/tags', 'AdminTagsController@index')->name('admin.tags');
+    Route::post('/tags', 'AdminTagsController@store')->name('admin.tags.store');
+    Route::get('/tags/create', 'AdminTagsController@create')->name('admin.tags.create');
+    Route::get('/tags/{post}', 'AdminTagsController@show')->name('admin.tags.show');
+    Route::get('/tags/{post}/edit', 'AdminTagsController@edit')->name('admin.tags.edit');
+    Route::put('/tags/{post}', 'AdminTagsController@update')->name('admin.tags.update');
+    Route::delete('/tags/{post}', 'AdminTagsController@destroy')->name('admin.tags.destroy');
+
+    Route::get('/categories', 'AdminCategoriesController@index')->name('admin.categories');
+    Route::post('/categories', 'AdminCategoriesController@store')->name('admin.categories.store');
+    Route::get('/categories/create', 'AdminCategoriesController@create')->name('admin.categories.create');
+    Route::get('/categories/{post}', 'AdminCategoriesController@show')->name('admin.categories.show');
+    Route::get('/categories/{post}/edit', 'AdminCategoriesController@edit')->name('admin.categories.edit');
+    Route::put('/categories/{post}', 'AdminCategoriesController@update')->name('admin.categories.update');
+    Route::delete('/categories/{post}', 'AdminCategoriesController@destroy')->name('admin.categories.destroy');
 
 });

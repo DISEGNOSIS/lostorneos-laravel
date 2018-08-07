@@ -17,7 +17,7 @@
                     <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
                 </h2>
                 <div class="blog-post-info">
-                    <span class="blog-post-category"><a href="/posts/{{ $post->slug }}">{{ $post->category->name }}</a></span>
+                    <span class="blog-post-category"><a href="{{ route('posts.show', $post->slug) }}">{{ $post->category->name }}</a></span>
                     <span class="blog-post-meta">
                         {{ $post->user->username }} ::
                         {{ \Carbon\Carbon::parse($post->published_at)->diffForHumans() }}

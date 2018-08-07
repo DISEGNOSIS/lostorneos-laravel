@@ -13,6 +13,11 @@
         </li>
         <li class="{{-- {{ Nav::isRoute('admin.teams') }} --}}"><a href="{{-- {{  route('admin.teams') }} --}}"><i class="fas fa-users-cog"></i>&nbsp; Equipos</a></li>
         <li class="{{-- {{ Nav::isRoute('admin.matches') }} --}}"><a href="{{-- {{  route('admin.matches') }} --}}"><i class="fas fa-users-cog"></i>&nbsp; Partidos</a></li>
-        <li class="{{ Nav::isRoute('admin.posts') }}"><a href="{{  route('admin.posts') }}"><i class="far fa-newspaper"></i>&nbsp; Noticias</a></li>
+        <li class="{{ Nav::isRoute('admin.posts') }}"><a href="{{  route('admin.posts') }}"><i class="far fa-newspaper"></i>&nbsp; Noticias <i class="fas fa-caret-down"></i></a>
+            <ul id="dropdown">
+                <li class="{{ Nav::isRoute('admin.categories') }}"><a href="{{ route('admin.categories') }}"><i class="fas fa-newspaper"></i>&nbsp; Categorías</a></li>
+                <li class="{{ Nav::isRoute('admin.tags') }}"><a href="{{ route('admin.tags') }}"><i class="fas fa-tags"></i>&nbsp; Tags</a></li>
+            </ul>
+        </li>
     </ul>
 </nav>

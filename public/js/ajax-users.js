@@ -25,18 +25,17 @@
 					var response = JSON.parse(this.responseText);
 				}
 				if(!response.error) {
-					data = response.data;
-					data.forEach(function(user) {
+					response.forEach(function(user) {					
 						result += '<tr>';
 						result += '<td><a href="users/' + user.id + '/active"><i class="fas {{ ' + (user.active ? 'fa-check' : 'fa-times') + ' }}"></i></a></td>';
 						result += '<td>' + user.id + '</td>';
 						result += '<td><a href="users/' + user.id + '">' + (user.name ? user.name : '') + '</a></td>';
 						result += '<td><a href="users/' + user.id + '">' + user.username + '</a></td>';
 						result += '<td>' + user.email + '</td>';
-						result += '<td>' + user.country_id + '</td>';
+						result += '<td><img src="/img/flags/' + (user.country ? user.country.flag.toLowerCase() : '') + '" alt="' + (user.country ? user.country.name : '') + '" class="flag"/></td>';
 						result += '<td>' + user.created_at + '</td>';
-						result += '<td>' + user.last_sign_in + '</td>';
-						result += '<td>' + user.rol + '</td>';
+						result += '<td>' + (user.last_sign_in ? user.last_sign_in : '-') + '</td>';
+						result += '<td>' + (user.roles ? user.roles[0].display_name : '-') + '</td>';
 						result += '<td><a class="edit" href="users/' + user.id + '/edit"><i class="fas fa-edit"></i></a></td>';
 						result += '<td><form action="users/' + user.id + '" method="POST">'
 						/* result += "@csrf @method('DELETE')"; */
@@ -44,25 +43,12 @@
 						result += '</tr>';
 					});
 					tbody.innerHTML = result;
-					pagination.style.display = 'none';
-
-
-
-						/* result += '<td><a href="users/' + user.id + '/active"><i class="fas {{ ' + (user.active ? 'fa-check' : 'fa-times') + ' }}"></i></a></td>';
-						result += '<td>' + user.id + '</td>';
-						result += '<td><a href="users/' + user.id + '">' + user.name ? user.name : '' + '</a></td>';
-						result += '<td><a href="users/' + user.id + '">' + user.username + '</a></td>';
-						result += '<td>' + user.email + '</td>';
-						result += '<td><img src="/img/flags/{{ ' + user.country_id ? user.country_id.flag.toLowerCase() : '' + ' }}" alt="{{ ' + user.country_id ? user.country_id.name : '' + ' }}" class="flag"/>' + '</td>';
-						result += '<td>{{ \Carbon\Carbon::parse($user->created_at)->diffForHumans() }}</td>'; */
-
-
-					
+					pagination.style.display = 'none';					
 				}
 
 			}
-			/* xmlhttp.open("GET","/admin/users/search",true); */
-			xmlhttp.open("GET","/admin/users/search?query="+query,true);
+			// xmlhttp.open("GET","/admin/users/search?query="+query,true);
+			xmlhttp.open("GET","/api/users/search?query="+query,true);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlhttp.send();
 		} else if(query == '') {
