@@ -12,8 +12,11 @@
 */
 
 Route::get('/', 'PagesController@index')->name('home');
-
 Route::get('/faq', 'PagesController@faq')->name('faq');
+
+Route::get('/posts', 'PostsController@index')->name('posts');
+Route::get('/posts/search', 'PostsController@search')->name('posts.search');
+Route::get('/posts/{slug}', 'PostsController@show')->name('posts.show');
 
 
 Route::get('/my-account', 'UsersController@show')->name('my-account')->middleware('auth');
@@ -68,6 +71,5 @@ Route::prefix('admin')->middleware('role:owner|admin|editor')->group(function() 
     Route::get('/posts/{post}/active', 'AdminPostsController@active')->name('admin.posts.active');
     Route::put('/posts/{post}', 'AdminPostsController@update')->name('admin.posts.update');
     Route::delete('/posts/{post}', 'AdminPostsController@destroy')->name('admin.posts.destroy');
-
 
 });

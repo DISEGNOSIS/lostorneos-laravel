@@ -13,7 +13,7 @@ class AdminPermissionsController extends Controller
     public function index()
     {
       $permissions = Permission::paginate(15);
-      return view('admin.permissions.index', compact('permissions'));
+      	return view('admin.permissions.index', compact('permissions'));
     }
     /**
      * Show the form for creating a new resource.
@@ -22,7 +22,7 @@ class AdminPermissionsController extends Controller
      */
     public function create()
     {
-      return view('admin.permissions.create');
+      	return view('admin.permissions.create');
     }
     /**
      * Store a newly created resource in storage.
@@ -53,8 +53,8 @@ class AdminPermissionsController extends Controller
      */
     public function show($id)
     {
-      $permission = Permission::findOrFail($id);
-      return view('admin.permissions.show', compact('permission'));
+		$permission = Permission::findOrFail($id);
+		return view('admin.permissions.show', compact('permission'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -64,8 +64,8 @@ class AdminPermissionsController extends Controller
      */
     public function edit($id)
     {
-      $permission = Permission::findOrFail($id);
-      return view('admin.permissions.edit', compact('permission'));
+		$permission = Permission::findOrFail($id);
+		return view('admin.permissions.edit', compact('permission'));
     }
     /**
      * Update the specified resource in storage.
@@ -76,16 +76,16 @@ class AdminPermissionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $this->validate($request, [
-        'display_name' => 'required|max:255',
-        'description' => 'sometimes|max:255'
-      ]);
-      $permission = Permission::findOrFail($id);
-      $permission->display_name = $request->display_name;
-      $permission->description = $request->description;
-      $permission->save();
-      \Flash::success('Se ha actualizado el Permiso: '. $permission->display_name);
-      return redirect()->route('admin.permissions.show', $id);
+		$this->validate($request, [
+			'display_name' => 'required|max:255',
+			'description' => 'sometimes|max:255'
+		]);
+		$permission = Permission::findOrFail($id);
+		$permission->display_name = $request->display_name;
+		$permission->description = $request->description;
+		$permission->save();
+		\Flash::success('Se ha actualizado el Permiso: '. $permission->display_name);
+		return redirect()->route('admin.permissions.show', $id);
     }
     /**
      * Remove the specified resource from storage.
@@ -95,6 +95,7 @@ class AdminPermissionsController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
+        Permission::findOrFail($id)->delete();
+        return back();
     }
 }

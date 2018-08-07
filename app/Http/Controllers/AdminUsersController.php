@@ -168,7 +168,8 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
+        User::findOrFail($id)->delete();
+        return back();
     }
 
     public function search(Request $request) {

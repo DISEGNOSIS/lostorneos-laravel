@@ -13,24 +13,9 @@ use App\Repositories\Posts;
 
 class PostsController extends Controller
 {
-    public function __construct() {
-        $this->middleware('auth')->except(['index', 'show']);
-    }
 
-    public function index(Post $posts) {
-        $posts = $posts->all();
-        
-        //$posts = Post::latest()->filter(request(['month', 'year']))->get();
-
-        /* $posts = Post::latest();
-        if($month = request('month')) {
-            $posts->whereMonth('created_at', Carbon::parse($month)->month);
-        }
-        if($year = request('year')) {
-            $posts->whereYear('created_at', $year);
-        }
-        $posts = $posts->get(); */
-
+    public function index(Request $request) {
+        $posts = Post::with('category', 'user', 'game', 'comments')->orderBy('created_at', 'desc')->paginate(15);
         return view('posts.index', compact('posts'));
     }
 
@@ -38,29 +23,4 @@ class PostsController extends Controller
         return view('posts.show', compact('post'));
     }
 
-    public function create() {
-        return view('posts.create');
-    }
-
-    public function store() {
-        /* $post = new Post;
-        $post->title = request('title');
-        $post->body = request('body');
-        $post->save();
- */
-        // Automatically save it:
-        $this->validate(request(), [
-            'title' => 'required',
-            'body' => 'required'
-        ]);
-        auth()->user()->publish(
-            new Post(request(['title', 'body']))
-        );
-        /* Post::create([
-            'title' => request('title'),
-            'body' => request('body'),
-            'user_id' => auth()->id()
-        ]); */
-        return redirect()->home();
-    }
 }

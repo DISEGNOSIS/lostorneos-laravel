@@ -18,16 +18,31 @@
 <body>
  <header>
  	<div class="fila">
-		<div class="fecha">
-				<time>
-					<?php
-					$dias=array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
-					$meses=array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-					echo "<span>".date("H:i")."hs</span><br>";
-					echo "<span>".$dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y')."</span";
-					?>
-				</time>
+		<time>
+			<div class="wrap">
+				<div class="widget">
+					<div class="fecha">
+						<p id="diaSemana" class="diaSemana">Martes</p>
+						<p id="dia" class="dia">27</p>
+						<p>de </p>
+						<p id="mes" class="mes">Octubre</p>
+						<p>de </p>
+						<p id="year" class="year">2015</p>
+					</div>
+			
+					<div class="reloj">
+						<p id="horas" class="horas">11</p>
+						<p>:</p>
+						<p id="minutos" class="minutos">48</p>
+						<p>:</p>
+						<div class="caja-segundos">
+							<p id="ampm" class="ampm">AM</p>
+							<p id="segundos" class="segundos">12</p>
+						</div>
+					</div>
+				</div>
 			</div>
+		</time>
 		<div id="logo">
 			<a href="{{ route('home') }}">
 				<img src="/img/logo.png" alt="Los Torneos" class="logo"/>
@@ -70,18 +85,8 @@
         </main>
     </section>
     <footer>
-		<div class="fila">
-			<div class="fecha">
-				<time><?php
-					$dias=array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
-					$meses=array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-					echo "<span>".date("H:i")."hs</span><br>";
-					echo "<span>".$dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y')."</span";
-					?></time>
-			</div>
-			</div>
-			<div class="disegnosis">
-			 <a href="https://www.disegnosis.com.ar" target="_blank">
+		<div class="disegnosis">
+			<a href="https://www.disegnosis.com.ar" target="_blank">
 				<img src="/img/disegnosis.png" alt="Diseño Web DISEGNOSIS - Webmaster Diseño de Páginas / Sitios Web. Servicios de Hosting.">
 			</a>
 		</div>
@@ -90,5 +95,6 @@
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/js/menu.js"></script>
 <script src="/js/faq.js"></script>
+<script src="js/reloj.js"></script>
 @yield('scripts')
 </html>

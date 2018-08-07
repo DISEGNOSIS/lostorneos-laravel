@@ -55,7 +55,7 @@
                                 <a class="edit" href="{{ route('admin.users.edit', $user->id) }}"><i class="fas fa-edit"></i></a>
                             </td>
                             <td>    
-                                <form action="{{ route('admin.users', $user->id) }}" method="POST">
+                                <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="delete" href=""><i class="fas fa-trash-alt"></i></button>

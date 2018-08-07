@@ -89,12 +89,13 @@ class RegisterController extends Controller
         $user->password = Hash::make($data['password']);
         $user->country_id = $data['country'];
         $user->avatar = $path;
+        dd($data);
         if($user->save()) {
             $user->attachRole(6);
-            \Flash::success("El Usuario $user->username se ha creado con éxito.");
+            flash('El Usuario ' . $user->username . ' se ha creado con éxito.')->success();
             return redirect()->route('admin.users');
         } else {
-            \Flash::error("El Usuario no se ha podido guardar. Por favor intentalo nuevamente.");
+            flash('El Usuario no se ha podido guardar. Por favor intentalo nuevamente.')->error();
             return back();
         }
 

@@ -8,28 +8,41 @@
 	<link href="css/style.css" rel="stylesheet"/>
 	<link href="fonts/css/fontawesome-all.css" rel="stylesheet"/>
 	<link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet"/>
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet"/> 
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet"/>
 	<link rel="icon" href="img/favicon.png" type="image/x-icon"/>
   <!--[if lt IE 9]>
   	<script src="js/html5shiv.js"></script>
 	<![endif]-->
+	@yield('head')
 </head>
 <body>
  <header>
  	<div class="fila">
- 		<div class="fecha">
-			<time>
-				<?php setlocale(LC_TIME, 'Spanish'); ?>
-				<span>{{ \Carbon\Carbon::now()->toTimeString() }}hs</span><br/>
-				<span>{{ \Carbon\Carbon::now()->format('l jS \\of F Y') }}</span>
-				<?php
-				/* $dias=array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
-				$meses=array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-				echo "<span>".date("H:i")."hs</span><br>";
-				echo "<span>".$dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y')."</span"; */
-				?>
-			</time>
-		</div>
+		<time>
+			<div class="wrap">
+				<div class="widget">
+					<div class="fecha">
+						<p id="diaSemana" class="diaSemana">Martes</p>
+						<p id="dia" class="dia">27</p>
+						<p>de </p>
+						<p id="mes" class="mes">Octubre</p>
+						<p>de </p>
+						<p id="year" class="year">2015</p>
+					</div>
+			
+					<div class="reloj">
+						<p id="horas" class="horas">11</p>
+						<p>:</p>
+						<p id="minutos" class="minutos">48</p>
+						<p>:</p>
+						<div class="caja-segundos">
+							<p id="ampm" class="ampm">AM</p>
+							<p id="segundos" class="segundos">12</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</time>
 		<div id="logo">
 			<a href="{{ route('home') }}">
 				<img src="img/logo.png" alt="Los Torneos" class="logo">
@@ -45,13 +58,8 @@
 						<li><a href="{{ route('my-account') }}"><i class='fas fa-user-edit'></i>&nbsp; Mi Cuenta</a></li>
 						<form action="{{ route('logout') }}" method="POST">
 							@csrf
-							<li><button type="submit" class="logout" {{-- onclick="event.preventDefault();
-						document.getElementById('logout-form').submit(); --}}><i class="fas fa-user-times"></i>&nbsp; Salir</button></li>
+							<li><button type="submit" class="logout"><i class="fas fa-user-times"></i>&nbsp; Salir</button></li>
 						</form>
-                        {{-- <form id='logout-form' action="{{route('logout') }} dsiplay="none">
-                            @csfr
-                        </form>
-                        ---------------- VER QUÉ ONDA.... --}}
 					</ul>
                 @else
 					<ul>
@@ -63,24 +71,16 @@
 	 </div>
 	 @include('layouts.partials.main-nav')
 	</header>
-    @yield('content')
+	@yield('content')
     <footer>
 		<div class="fila">
-				<div class="fecha">
-					<time><?php
-						$dias=array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
-						$meses=array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-						echo "<span>".date("H:i")."hs</span><br>";
-						echo "<span>".$dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y')."</span";
-						?></time>
-				</div>
-				<div class="sociales">
-					<div class="discord"><a href="#"><i class="fab fa-discord"></i></a></div>
-					<div class="facebook"><a href="#"><i class="fab fa-facebook-square"></i></a></div>
-				</div>
+			<div class="sociales">
+				<div class="discord"><a href="#"><i class="fab fa-discord"></i></a></div>
+				<div class="facebook"><a href="#"><i class="fab fa-facebook-square"></i></a></div>
 			</div>
-			<div class="disegnosis">
-			 <a href="https://www.disegnosis.com.ar" target="_blank">
+		</div>
+		<div class="disegnosis">
+			<a href="https://www.disegnosis.com.ar" target="_blank">
 				<img src="img/disegnosis.png" alt="Diseño Web DISEGNOSIS - Webmaster Diseño de Páginas / Sitios Web. Servicios de Hosting.">
 			</a>
 		</div>
@@ -89,5 +89,6 @@
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/menu.js"></script>
 <script src="js/faq.js"></script>
+<script src="js/reloj.js"></script>
 @yield('scripts')
 </html>

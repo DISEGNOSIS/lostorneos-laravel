@@ -39,16 +39,6 @@ header .fila {
 	margin-bottom: 13px;
 }
 
-.fecha {
-	font-size: 0.8em;
-	color: #eee;
-	text-align: center;
-}
-
-.fecha span:first-of-type {
-	font-size: 1.8em;
-}
-
 #logo {
 	display: flex;
 	flex-flow: row wrap;
@@ -309,7 +299,7 @@ footer {
   	border-top: 1px solid #111;
 }
 
-footer .fecha {
+footer time {
 	display: none;
 }
 
@@ -560,6 +550,210 @@ footer .fecha {
 	background-color: rgba(255, 255, 255, 0.2);
 }
 
+.search {
+	float: left;
+}
+
+.search i {
+	margin-right: 3px;
+}
+
+.search input {
+	font-size: 1em;
+	background: #cecece;
+	padding: 6px;
+	border-radius: 6px;
+	margin:0 0 13px 0;
+}
+
+.search button {
+	font-size: 1em;
+	color: #fff;
+	text-shadow: 1px 1px 2px #000;
+	border: 1px solid #000;
+	border-radius: 6px;
+	background: #4267b2;
+	padding: 6px 13px;
+	height: 40px;
+	cursor: pointer;
+	-moz-box-shadow: 3px 3px 6px #000;
+	-webkit-box-shadow: 3px 3px 6px #000;
+	box-shadow: 3px 3px 6px #000;
+}
+
+.search button:hover {
+	background: deepskyblue;
+}
+
+/* --------------------- RELOJ --------------- */
+.wrap {
+	width: 100%;
+}
+
+.widget {
+	width: 100%;
+	margin: 0 1em;
+}
+
+.widget p {
+	display: inline-block;
+	line-height: 0.5em;
+}
+
+.fecha {
+	font-family: Oswald, Arial;
+	text-align: center;
+	font-size:1.1em;
+	padding: 0;
+	margin-bottom: -33px;
+}
+
+.reloj {
+	font-family: Oswald, Arial;
+	width: 100%;
+	padding: 0;
+	font-size: 3em;
+	text-align: center;
+	margin-bottom: -33px;
+}
+
+.reloj .caja-segundos {
+	display: inline-block;
+}
+
+.reloj .segundos,
+.reloj .ampm {
+	font-size: 1rem;
+	display: block;
+}
+
+/* --------------------- RELOJ --------------- */
+
+.post {
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+}
+
+.post .image {
+	width: 100%;
+	max-width: 350px;
+	height: auto;
+	border-radius: 0 13px;
+	border: 3px solid #fff;
+	-moz-box-shadow: 3px 3px 6px #000;
+	-webkit-box-shadow: 3px 3px 6px #000;
+	box-shadow: 3px 3px 6px #000;
+}
+
+.fr-video iframe {
+	margin: 0 auto;
+	width: 100%;
+	border-radius: 0 13px;
+	border: 3px solid #fff;
+	-moz-box-shadow: 3px 3px 6px #000;
+	-webkit-box-shadow: 3px 3px 6px #000;
+	box-shadow: 3px 3px 6px #000;
+}
+
+.blog-main {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+
+.titulo {
+	color: deepskyblue;
+	background: rgba(0, 0, 0, 0.8);
+	padding: 1rem;
+	margin: 1% 2.9% 0;
+	width: 94.1%;
+	border-radius: 13px 13px 0 0;
+	-moz-box-shadow: 3px 3px 6px #000;
+	-webkit-box-shadow: 3px 3px 6px #000;
+	box-shadow: 3px 3px 6px #000;
+}
+
+.blog-post {
+	background: rgba(0, 0, 0, 0.8);
+	padding: 0 1rem;
+	margin: 1%;
+	width: 30%;
+	border-radius: 0 13px;
+	-moz-box-shadow: 3px 3px 6px #000;
+	-webkit-box-shadow: 3px 3px 6px #000;
+	box-shadow: 3px 3px 6px #000;
+}
+
+.blog-post img:nth-of-type(odd) {
+	float: left;
+	margin-right: 13px;
+	width: 100%;
+	max-width: 350px;
+	height: auto;
+	border-radius: 0 13px;
+	border: 3px solid #fff;
+	-moz-box-shadow: 3px 3px 6px #000;
+	-webkit-box-shadow: 3px 3px 6px #000;
+	box-shadow: 3px 3px 6px #000;
+}
+
+.blog-post img:nth-of-type(even) {
+	float: right;
+	margin-left: 13px;
+	width: 100%;
+	max-width: 350px;
+	height: auto;
+	border-radius: 0 13px;
+	border: 3px solid #fff;
+	-moz-box-shadow: 3px 3px 6px #000;
+	-webkit-box-shadow: 3px 3px 6px #000;
+	box-shadow: 3px 3px 6px #000;
+}
+
+.blog-post img:nth-of-type(1) {
+	float: none;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 450px;
+	height: auto;
+	border-radius: 0 13px;
+	border: 3px solid #fff;
+	-moz-box-shadow: 3px 3px 6px #000;
+	-webkit-box-shadow: 3px 3px 6px #000;
+	box-shadow: 3px 3px 6px #000;
+}
+
+.blog-post-title a {
+	font-size: 1em;
+	text-transform: uppercase;
+}
+
+.blog-post-title a:hover {
+	color: #ca0000;
+}
+
+.blog-post-meta {
+	margin-bottom: 1.25rem;
+	color: #cecece;
+	text-align: right;
+}
+
+.blog-post h2 {
+	font-size: 1.3em;
+	color: #FFA933;
+}
+
+.blog-post h3 {
+	font-size: 1.2em;
+	color: #00b549;
+}
+
+.centrar {
+	display: flex;
+	justify-content: center;
+}
+
 
 
 
@@ -614,7 +808,7 @@ footer .fecha {
 		justify-content:center;
 	}
 
-	header .fecha {
+	header time {
 		display: none;
 	}
 	
@@ -624,16 +818,12 @@ footer .fecha {
 		align-items: center;
 	}
 
-	footer .fecha {
+	footer time {
 		display: inherit;
 		font-size: 0.8em;
 		color: #eee;
 		text-align: center;
 		padding-left: 13px;
-	}
-
-	footer .fecha span:first-of-type {
-		font-size: 1.6em;
 	}
 	
 	.checkbox {
@@ -796,10 +986,6 @@ footer .fecha {
 	.campo p {
 		text-align: center;
 		font-size: 0.9em;
-	}
-
-	footer .fecha {
-		font-size: 0.66em;
 	}
 	
 }

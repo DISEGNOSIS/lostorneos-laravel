@@ -104,6 +104,7 @@ class AdminRolesController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
+        Rol::findOrFail($id)->delete();
+        return back();
     }
 }

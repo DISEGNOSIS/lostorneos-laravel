@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Storage;
 use App\Post;
 use App\Category;
 use Carbon\Carbon;
@@ -42,6 +43,7 @@ class AdminPostsController extends Controller
             'title' => 'required|string|min:3|max:255',
             'content' => 'required|string|min:20',
             'category' => 'required|string',
+            'image' => 'image',
         ]);
             
         $post = new Post();
@@ -63,6 +65,7 @@ class AdminPostsController extends Controller
             $post->published_at = Carbon::now();
         } else {
             $post->active = 0;
+            $post->published_at = '';
         }
         
         if($post->save()) {
@@ -123,7 +126,9 @@ class AdminPostsController extends Controller
             $extension = $request->file('image')->extension();
             $newName = uniqid() . "." . $extension;
             $image->storeAs('public/img/posts', $newName);
+            $old = $post->image;
             $post->image = $newName;
+            Storage::delete($old);
         }
         
         if($request->active) {
@@ -150,7 +155,8 @@ class AdminPostsController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
+        Post::findOrFail($id)->delete();
+        return back();
     }
 
     public function search(Request $request) {
