@@ -11,23 +11,33 @@
 
 @section('content')
 	<article>
-        <h1 class="titulo">Noticias:</h1>
+        <h1 class="titulo">Noticias</h1>
         @if($posts->count() > 0)
             <div class="blog-main">
                 @foreach($posts as $post)
                     <div class="blog-post">
-                        <h2 class="blog-post-title"><a href="/posts/{{ $post->id }}">{{ $post->title }}</a></h2>
-                        <p class="blog-post-meta">
-                            {{ $post->user->username }} ::
-                            {{ \Carbon\Carbon::parse($post->published_at)->diffForHumans() }}
-                        </p>
+                        <h2 class="blog-post-title">
+                            <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
+                        </h2>
+                        <div class="blog-post-info">
+                            <span class="blog-post-category"><a href="/posts/{{ $post->slug }}">{{ $post->category->name }}</a></span>
+                            <span class="blog-post-meta">
+                                {{ $post->user->username }} ::
+                                {{ \Carbon\Carbon::parse($post->published_at)->diffForHumans() }}
+                            </span>
+                        </div>
                         @if($post->image)
                             <div class="centrar">
                                 <img src="{{ asset('storage/img/posts/' . $post->image) }}" class="image" alt="{{ $post->title }}"/>
                             </div>
                         @endif
                         <div class="fr-view">
-                            {!! $post->content !!}
+                            {!! str_limit(strip_tags($post->content), 333) !!}
+                            @if(strlen(strip_tags($post->content)) > 333)                        
+                                <a href="/posts/{{ $post->slug }}" class="read-more">
+                                    <i class="fas fa-arrow-alt-circle-right"></i>
+                                </a>
+                            @endif
                         </div>
                     </div>
                 @endforeach

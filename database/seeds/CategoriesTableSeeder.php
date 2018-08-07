@@ -13,7 +13,7 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         DB::table('categories')->insert([
-            'name' => 'Noticias',
+            'name' => 'Videojuegos',
             'created_at'	=>	Carbon::now(),
 			'updated_at'	=>	Carbon::now()
         ]);

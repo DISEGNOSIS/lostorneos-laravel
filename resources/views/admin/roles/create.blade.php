@@ -15,21 +15,21 @@
         <section class="formulario">
             <form id="admin-roles-create" action="{{ route('admin.roles.store') }}" method="POST">
                 @csrf
+                @if($errors->has('display_name'))
+                    <p class="error" role="alert">
+                        <strong>{{ $errors->first('display_name') }}</strong>
+                    </p>
+                @endif
                 <div class="campo">
                     <input id="display_name" type="text" class="{{ $errors->has('display_name') ? ' is-invalid' : '' }}" name="display_name" value="{{ old('display_name') }}" placeholder="Título" autofocus/>
-                    @if($errors->has('display_name'))
-                        <span class="error" role="alert">
-                            <strong>{{ $errors->first('display_name') }}</strong>
-                        </span>
-                    @endif
                 </div>
+                @if($errors->has('description'))
+                    <p class="error" role="alert">
+                        <strong>{{ $errors->first('description') }}</strong>
+                    </p>
+                @endif
                 <div class="campo">
                     <textarea id="description" class="{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" placeholder="Descripción" autofocus>{{ old('description') }}</textarea>
-                    @if($errors->has('description'))
-                        <span class="error" role="alert">
-                            <strong>{{ $errors->first('description') }}</strong>
-                        </span>
-                    @endif
                 </div>
                 <h2>Permisos:</h2>
                 <div class="datos-checkbox">

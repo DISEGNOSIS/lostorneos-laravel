@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Permission;
+use Laracasts\Flash\Flash;
 
 class AdminPermissionsController extends Controller
 {
@@ -34,16 +35,19 @@ class AdminPermissionsController extends Controller
     {
         $this->validate($request, [
           'display_name' => 'required|max:255',
-          'name' => 'required|max:255|alphadash|unique:permissions,name',
           'description' => 'sometimes|max:255'
         ]);
         $permission = new Permission();
         $permission->name = $request->name;
         $permission->display_name = $request->display_name;
         $permission->description = $request->description;
-        $permission->save();
-        \Flash::success('¡El Permiso fue agregado exitosamente!');
-        return redirect()->route('admin.permissions');
+        if($permission->save()){
+			Flash::success("¡El Permiso $permission->display_name fue agregado exitosamente!");
+			return redirect()->route('admin.permissions');
+		} else {
+			Flash::error('No se ha podido guardar el Permiso.');
+        	return back();
+		}
     }
     /**
      * Display the specified resource.
@@ -83,9 +87,13 @@ class AdminPermissionsController extends Controller
 		$permission = Permission::findOrFail($id);
 		$permission->display_name = $request->display_name;
 		$permission->description = $request->description;
-		$permission->save();
-		\Flash::success('Se ha actualizado el Permiso: '. $permission->display_name);
-		return redirect()->route('admin.permissions.show', $id);
+		if($permission->save()){
+			Flash::success('Se ha actualizado el Permiso: '. $permission->display_name);
+			return redirect()->route('admin.permissions.show', $id);
+		} else {
+			Flash::error('No se ha podido guardar el Permiso.');
+        	return back();
+		}
     }
     /**
      * Remove the specified resource from storage.
@@ -95,7 +103,8 @@ class AdminPermissionsController extends Controller
      */
     public function destroy($id)
     {
-        Permission::findOrFail($id)->delete();
+		Permission::findOrFail($id)->delete();
+		Flash::error('Se ha borrado el Permiso.');
         return back();
     }
 }

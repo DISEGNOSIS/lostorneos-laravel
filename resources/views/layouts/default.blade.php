@@ -34,7 +34,6 @@
 						<p id="horas" class="horas">11</p>
 						<p>:</p>
 						<p id="minutos" class="minutos">48</p>
-						<p>:</p>
 						<div class="caja-segundos">
 							<p id="ampm" class="ampm">AM</p>
 							<p id="segundos" class="segundos">12</p>
@@ -71,6 +70,7 @@
 	 </div>
 	 @include('layouts.partials.main-nav')
 	</header>
+	@include('flash::message')
 	@yield('content')
     <footer>
 		<div class="fila">
@@ -90,5 +90,8 @@
 <script src="js/menu.js"></script>
 <script src="js/faq.js"></script>
 <script src="js/reloj.js"></script>
+<script>
+	$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
 @yield('scripts')
 </html>

@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Laracasts\Flash\Flash;
 
 class LoginController extends Controller
 {
@@ -51,11 +52,11 @@ class LoginController extends Controller
             $user->last_sign_in = Carbon::now();
             $user->save();
             if($user->hasRole('owner') || $user->hasRole('admin')) {
+                Flash::success('Ingresaste correctamente.');
                 return redirect()->route('admin');
             }
         } else {
-            dd('No está activo');
-            \Flash::error('El Usuario: ' . $user->username .' no se encuentra activado: ');
+            Flash::error('El Usuario: ' . $user->username .' no se encuentra activado.');
             return redirect()->route('login');
         }
     }

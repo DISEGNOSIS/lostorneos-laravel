@@ -1,3 +1,12 @@
+/* (function() {
+	const faqs = document.querySelectorAll('.faq');
+
+	faqs.addEventListener('click', show);
+
+	function show() {
+
+	}
+})(); */
 // JavaScript Document
 //window.onload(function() {
 //	"use strict";

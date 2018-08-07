@@ -34,7 +34,6 @@
 						<p id="horas" class="horas">11</p>
 						<p>:</p>
 						<p id="minutos" class="minutos">48</p>
-						<p>:</p>
 						<div class="caja-segundos">
 							<p id="ampm" class="ampm">AM</p>
 							<p id="segundos" class="segundos">12</p>
@@ -58,13 +57,8 @@
 						<li><a href="{{ route('my-account') }}"><i class='fas fa-user-edit'></i>&nbsp; Mi Cuenta</a></li>
 						<form action="{{ route('logout') }}" method="POST">
 							@csrf
-							<li><button type="submit" class="logout" {{-- onclick="event.preventDefault();
-						document.getElementById('logout-form').submit(); --}}><i class="fas fa-user-times"></i>&nbsp; Salir</button></li>
+							<li><button type="submit" class="logout"><i class="fas fa-user-times"></i>&nbsp; Salir</button></li>
 						</form>
-                        {{-- <form id='logout-form' action="{{route('logout') }} dsiplay="none">
-                            @csfr
-                        </form>
-                        ---------------- VER QUÉ ONDA.... --}}
 					</ul>
                 @else
 					<ul>
@@ -76,6 +70,7 @@
 	 </div>
 	@include('layouts.admin-partials.main-nav')
     </header>
+	@include('flash::message')
     <section class="admin">
         {{-- <aside>
             @include('layouts.admin-partials.sidebar')
@@ -96,5 +91,8 @@
 <script src="/js/menu.js"></script>
 <script src="/js/faq.js"></script>
 <script src="js/reloj.js"></script>
+<script>
+	$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
 @yield('scripts')
 </html>

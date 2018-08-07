@@ -1219,6 +1219,30 @@ footer time {
 
 
 
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.alert {
+	width: 90%;
+	text-align: center;
+    padding: 15px;
+    margin: 15px auto 3px;
+    border: 1px solid transparent;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	border-left-color: transparent;
+	border-radius: 4px;
+}
+
+.alert-danger {
+    color: #ca0000;
+  	background-color: #F2DEDE;
+ 	border: 1px solid #B94A48;
+}
 
 
 @media only screen and (max-width: 1368px) {

@@ -8,6 +8,7 @@ use Storage;
 use App\Post;
 use App\Category;
 use Carbon\Carbon;
+use Laracasts\Flash\Flash;
 
 
 class AdminPostsController extends Controller
@@ -69,10 +70,10 @@ class AdminPostsController extends Controller
         }
         
         if($post->save()) {
-            \Flash::success("La Noticia $post->title se ha creado con éxito.");
+            Flash::success("La Noticia $post->title se ha creado con éxito.");
             return redirect()->route('admin.posts');
         } else {
-            \Flash::error("La Noticia no se ha podido guardar. Por favor intentalo nuevamente.");
+            Flash::error("La Noticia no se ha podido guardar. Por favor intentalo nuevamente.");
             return back();
         }
     }
@@ -139,10 +140,10 @@ class AdminPostsController extends Controller
         }
         
         if($post->save()) {
-            \Flash::success("La Noticia $post->title se ha actualizado con éxito.");
+            Flash::success("La Noticia $post->title se ha actualizado con éxito.");
             return redirect()->route('admin.posts');
         } else {
-            \Flash::error("La Noticia no se ha podido guardar. Por favor intentalo nuevamente.");
+            Flash::error("La Noticia no se ha podido guardar. Por favor intentalo nuevamente.");
             return back();
         }
     }

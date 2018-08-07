@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Laracasts\Flash\Flash;
 
 class RegisterController extends Controller
 {
@@ -89,13 +90,12 @@ class RegisterController extends Controller
         $user->password = Hash::make($data['password']);
         $user->country_id = $data['country'];
         $user->avatar = $path;
-        dd($data);
         if($user->save()) {
             $user->attachRole(6);
-            flash('El Usuario ' . $user->username . ' se ha creado con éxito.')->success();
-            return redirect()->route('admin.users');
+            Flash::success("El Usuario $user->username se ha creado con éxito.");
+            return $user;
         } else {
-            flash('El Usuario no se ha podido guardar. Por favor intentalo nuevamente.')->error();
+            Flash::error('El Usuario no se ha podido guardar. Por favor intentalo nuevamente.');
             return back();
         }
 

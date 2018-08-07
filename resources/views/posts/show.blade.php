@@ -1,7 +1,7 @@
-@extends('layouts.admin')
+@extends('layouts.default')
 
 @section('title')
-    Administración | Noticias - Los Torneos
+    Los Torneos - {{ $post->title }}
 @endsection
 
 @section('head')
@@ -11,17 +11,52 @@
 
 @section('content')
 	<article>
-        <div class="editar">
-            <a href="{{ route('admin.posts.edit', $post->id) }}">Editar</a>
-        </div>
-        <h1>{{ $post->title }}</h1>
-        <section class="post">
-            @if($post->image)
-                <img src="{{ asset('storage/img/posts/' . $post->image) }}" class="image" alt="{{ $post->title }}"/>
-            @endif
-            <div class="fr-view">
-                {!! $post->content !!}
+        <div class="blog-main">
+            <div class="blog-post">
+                <h2 class="blog-post-title">
+                    <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
+                </h2>
+                <div class="blog-post-info">
+                    <span class="blog-post-category"><a href="/posts/{{ $post->slug }}">{{ $post->category->name }}</a></span>
+                    <span class="blog-post-meta">
+                        {{ $post->user->username }} ::
+                        {{ \Carbon\Carbon::parse($post->published_at)->diffForHumans() }}
+                    </span>
+                </div>
+                @if($post->image)
+                    <div class="centrar">
+                        <img src="{{ asset('storage/img/posts/' . $post->image) }}" class="image" alt="{{ $post->title }}"/>
+                    </div>
+                @endif
+                <div class="fr-view">
+                    {!! $post->content !!}
+                </div>
             </div>
-        </section>
+            {{-- <hr>
+            <div class="comments">
+                <ul class="list-group">
+                    @foreach($post->comments as $comment)
+                        <li class="list-group-item">
+                            <i>{{ $comment->created_at->diffForHumans() }}:&nbsp; </i>
+                            {{ $comment->body }}
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+            <hr>
+            <div class="card">
+                <div class="card-block">
+                    <form method="POST" action="/posts/{{ $post->id }}/comments">
+                        @csrf
+                        <div class="form-group">
+                            <textarea name="body" placeholder="Your comment here..." class="form-control" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Comentar</button>
+                        </div>
+                    </form>
+                </div>
+            </div> --}}
+        </div>
 	</article>
 @endsection

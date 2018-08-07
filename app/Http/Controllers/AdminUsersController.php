@@ -9,6 +9,7 @@ use App\User;
 use App\Country;
 use App\Role;
 use Illuminate\Validation\Rule;
+use Laracasts\Flash\Flash;
 
 class AdminUsersController extends Controller
 {
@@ -77,10 +78,10 @@ class AdminUsersController extends Controller
         $user->score = $request->score;
         if($user->save()) {
             $user->attachRole((int)$request->role);
-            \Flash::success("El Usuario $user->username se ha creado con éxito.");
+            Flash::success("El Usuario $user->username se ha creado con éxito.");
             return redirect()->route('admin.users');
         } else {
-            \Flash::error("El Usuario no se ha podido guardar. Por favor intentalo nuevamente.");
+            Flash::error("El Usuario no se ha podido guardar. Por favor intentalo nuevamente.");
             return back();
         }
     }
@@ -152,10 +153,10 @@ class AdminUsersController extends Controller
 
         if($user->save()) {
             $user->syncRoles([(int)$request->role]);
-            \Flash::success("El Usuario $user->username se ha creado con éxito.");
+            Flash::success("El Usuario $user->username se ha creado con éxito.");
             return redirect()->route('admin.users.show', $id);
         } else {
-            \Flash::error("El Usuario no se ha podido guardar. Por favor intentalo nuevamente.");
+            Flash::error("El Usuario no se ha podido guardar. Por favor intentalo nuevamente.");
             return back();
         }
     }
@@ -169,6 +170,7 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         User::findOrFail($id)->delete();
+        Flash::error('Se ha borrado el Usuario.');
         return back();
     }
 
@@ -187,7 +189,6 @@ class AdminUsersController extends Controller
             $user->active = 1;
             $user->save();
         }
-        $users = User::with('country', 'roles')->paginate(15);
-        return view('admin.users.index', compact('users'));
+        return back();
     }
 }

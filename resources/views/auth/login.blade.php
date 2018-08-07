@@ -13,23 +13,22 @@
 				<form action="" method="post" action="{{ route('login') }}" id="ingreso">
 					@csrf
 					<div class="error"><?= isset($errores["usuario"]) ? $errores["usuario"]: "" ?></div>
+					@if ($errors->has('username'))
+						<p class="error" role="alert">
+							<strong>{{ $errors->first('username') }}</strong>
+						</p>
+					@endif
 					<div class="campo">
-						<input id="username" type="text" class="{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" placeholder="Usuario" required autofocus>
-
-						@if ($errors->has('username'))
-							<span class="error" role="alert">
-								<strong>{{ $errors->first('username') }}</strong>
-							</span>
-						@endif
+						<input id="username" type="text" class="{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" placeholder="Usuario" required autofocus/>
 					</div>
+					@if ($errors->has('password'))
+						<p class="error" role="alert">
+							<strong>{{ $errors->first('password') }}</strong>
+						</p>
+					@endif
 					<div class="campo">
-						<input id="password" type="password" class="{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Contraseña" required>
+						<input id="password" type="password" class="{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Contraseña" required/>
 
-						@if ($errors->has('password'))
-							<span class="error" role="alert">
-								<strong>{{ $errors->first('password') }}</strong>
-							</span>
-						@endif
 					</div>
 					<div class="campo1">
 						<div class="checkbox">

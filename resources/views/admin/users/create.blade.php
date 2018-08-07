@@ -11,31 +11,29 @@
         <section class="formulario">
             <form id="admin-users-create" action="{{ route('admin.users.store') }}" method="POST">
                 @csrf
+                @if($errors->has('name'))
+                    <p class="error" role="alert">
+                        <strong>{{ $errors->first('name') }}</strong>
+                    </p>
+                @endif
                 <div class="campo">
                     <input id="name" type="text" class="{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="Nombre" autofocus/>
-                    @if($errors->has('name'))
-                        <span class="error" role="alert">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                    @endif
                 </div>
+                @if($errors->has('username'))
+                    <p class="error" role="alert">
+                        <strong>{{ $errors->first('username') }}</strong>
+                    </p>
+                @endif
                 <div class="campo">
                     <input id="username" type="text" class="{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" placeholder="Usuario" required autofocus/>
-
-                    @if($errors->has('username'))
-                        <span class="error" role="alert">
-                            <strong>{{ $errors->first('username') }}</strong>
-                        </span>
-                    @endif
                 </div>
+                @if($errors->has('email'))
+                    <p class="error" role="alert">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </p>
+                @endif
                 <div class="campo">
                     <input id="email" type="email" class="{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email" required/>
-
-                    @if($errors->has('email'))
-                        <span class="error" role="alert">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                    @endif
                 </div>
                 <div class="custom-select">
                     <select name="country">
@@ -61,14 +59,13 @@
                         @endforeach
                     </select>
                 </div>
+                @if($errors->has('score'))
+                    <p class="error" role="alert">
+                        <strong>{{ $errors->first('score') }}</strong>
+                    </p>
+                @endif
                 <div class="campo">
                     <input id="score" type="text" class="{{ $errors->has('score') ? ' is-invalid' : '' }}" name="score" value="{{ old('score') }}" placeholder="Puntuación" autofocus/>
-
-                    @if($errors->has('score'))
-                        <span class="error" role="alert">
-                            <strong>{{ $errors->first('score') }}</strong>
-                        </span>
-                    @endif
                 </div>
                 <div class="checkbox">
 					<label class="container">Generar la Contraseña
@@ -80,14 +77,13 @@
 						<span class="checkmark"></span>
 					</label>
 				</div>
+                @if($errors->has('password'))
+                    <p class="error" role="alert">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </p>
+                @endif
                 <div class="campo">
                     <input id="password" type="password" class="hidden password {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Contraseña"/>
-
-                    @if($errors->has('password'))
-                        <span class="error" role="alert">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                    @endif
                 </div>
                 <div class="campo">
                     <input id="password_confirmation" type="password" class="hidden password" name="password_confirmation" placeholder="Confirmar Contraseña"/>

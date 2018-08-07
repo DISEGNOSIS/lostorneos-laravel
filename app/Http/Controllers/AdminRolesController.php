@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Role;
 use App\Permission;
+use Laracasts\Flash\Flash;
 
 class AdminRolesController extends Controller
 {
@@ -36,19 +37,18 @@ class AdminRolesController extends Controller
     {
         $this->validate($request, [
             'display_name' => 'required|max:255',
-            'name' => 'required|max:255|alphadash|unique:roles,name',
             'description' => 'sometimes|max:255'
-          ]);
-          $role = new Role();
-          $role->name = $request->name;
-          $role->display_name = $request->display_name;
-          $role->description = $request->description;
-          $role->save();
-          if($request->permissions) {
+        ]);
+        $role = new Role();
+        $role->name = $request->name;
+        $role->display_name = $request->display_name;
+        $role->description = $request->description;
+        $role->save();
+        if($request->permissions) {
             $role->syncPermissions($request->permissions);
         }
-          \Flash::success('¡El Rol fue agregado exitosamente!');
-          return redirect()->route('admin.roles');
+        Flash::success("¡El Rol $role->display_name fue agregado exitosamente!");
+        return redirect()->route('admin.roles');
     }
     /**
      * Display the specified resource.
@@ -93,7 +93,7 @@ class AdminRolesController extends Controller
           if($request->permissions) {
               $role->syncPermissions($request->permissions);
           }
-          \Flash::success('Se ha actualizado el Rol: '. $role->display_name);
+          Flash::success('Se ha actualizado el Rol: '. $role->display_name);
           return redirect()->route('admin.roles.show', $id);
     }
     /**
@@ -104,7 +104,8 @@ class AdminRolesController extends Controller
      */
     public function destroy($id)
     {
-        Rol::findOrFail($id)->delete();
+        Role::findOrFail($id)->delete();
+        Flash::error('Se ha borrado el Rol.');
         return back();
     }
 }
