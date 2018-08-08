@@ -139,5 +139,13 @@ class PostsTableSeeder extends Seeder
             'created_at' =>	Carbon::now(),
 			'updated_at' =>	Carbon::now()
         ]);
+
+
+        $posts = Post::all();
+        foreach($posts as $key => $post) {
+            $post->tags()->sync([rand(1, 4)]);
+        }
+
+        
     }
 }

@@ -33,11 +33,12 @@ class LaratrustSetupTables extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-            $table->string('display_name')->nullable();
+            $table->string('display_name');
             $table->string('description')->nullable();
             $table->string('image');
-            $table->float('score', 10, 2);
+            $table->float('score', 10, 2)->nullable();
             $table->unsignedInteger('country_id');
+            $table->date('foundation');
             $table->timestamps();
         });
 

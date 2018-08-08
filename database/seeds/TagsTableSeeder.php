@@ -20,8 +20,8 @@ class TagsTableSeeder extends Seeder
         ]);
 
         DB::table('tags')->insert([
-            'name' => 'XBOX 360',
-            'slug' => 'xbox-360',
+            'name' => 'XBOX ONE',
+            'slug' => 'xbox-one',
             'created_at'	=>	Carbon::now(),
 			'updated_at'	=>	Carbon::now()
         ]);

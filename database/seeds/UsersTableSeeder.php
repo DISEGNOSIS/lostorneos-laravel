@@ -35,7 +35,6 @@ class UsersTableSeeder extends Seeder
             } else {
                 $user->attachRole(6);
             }
-
         }
 
     }

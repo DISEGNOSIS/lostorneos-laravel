@@ -19,4 +19,8 @@ class Tag extends Model
     public function posts() {
         return $this->belongsToMany('App\Post')->withTimestamps();
     }
+
+    public function tournaments() {
+        return $this->belongsToMany('App\Tournament')->withTimestamps();
+    }
 }

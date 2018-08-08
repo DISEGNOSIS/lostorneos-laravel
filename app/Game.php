@@ -19,4 +19,8 @@ class Game extends Model
     public function posts() {
         return $this->hasMany('App\Post');
     }
+
+    public function tournaments() {
+        return $this->hasMany('App\Tournament');
+    }
 }
