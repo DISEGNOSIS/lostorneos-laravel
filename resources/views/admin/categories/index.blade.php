@@ -43,7 +43,7 @@
                 </tbody>
             </table>
         @else
-            <h2>No se han encontrado Tags</h2>    
+            <h2>No se han encontrado Categorías</h2>    
         @endif
     </article>
     @if($categories->count() > 0)

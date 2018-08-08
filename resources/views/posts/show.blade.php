@@ -12,7 +12,7 @@
 @section('content')
 	<article>
         <div class="blog-main">
-            <div class="blog-post">
+            <div class="blog-post show">
                 <h2 class="blog-post-title">
                     <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
                 </h2>

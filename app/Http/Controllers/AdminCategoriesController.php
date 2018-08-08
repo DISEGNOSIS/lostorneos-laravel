@@ -51,7 +51,8 @@ class AdminCategoriesController extends Controller
      */
     public function show($id)
     {
-        return view('admin.categories.show');
+        $category = Category::findOrFail($id);
+        return view('admin.categories.show', compact('category'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -62,7 +63,7 @@ class AdminCategoriesController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        return view('admin.categories.edit', compact('categories'));
+        return view('admin.categories.edit', compact('category'));
     }
     /**
      * Update the specified resource in storage.
@@ -74,8 +75,7 @@ class AdminCategoriesController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'display_name' => 'required|max:255',
-            'description' => 'sometimes|max:255'
+            'name' => 'required|string|max:255',
           ]);
           $category = Category::findOrFail($id);
           $category->name = $request->name;

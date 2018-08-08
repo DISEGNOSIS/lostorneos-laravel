@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 use Socialite;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -57,7 +58,8 @@ class LoginController extends Controller
             }
         } else {
             Flash::error('El Usuario: ' . $user->username .' no se encuentra activado.');
-            return redirect()->route('login');
+            Auth::logout();
+            return back();
         }
     }
 

@@ -21,7 +21,7 @@
                     </p>
                 @endif
                 <div class="campo">
-                    <input id="name" type="text" class="{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="Nombre" autofocus required/>
+                    <input id="name" type="text" class="{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="Título" autofocus required/>
                 </div>
             </form>
         </section>

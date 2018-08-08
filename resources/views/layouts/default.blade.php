@@ -6,10 +6,10 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
 	<title>@yield('title')</title>
 	<link href="/css/style.css" rel="stylesheet"/>
-	<link href="fonts/css/fontawesome-all.css" rel="stylesheet"/>
+	<link href="/fonts/css/fontawesome-all.css" rel="stylesheet"/>
 	<link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet"/>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet"/>
-	<link rel="icon" href="img/favicon.png" type="image/x-icon"/>
+	<link rel="icon" href="/img/favicon.png" type="image/x-icon"/>
   <!--[if lt IE 9]>
   	<script src="js/html5shiv.js"></script>
 	<![endif]-->
@@ -44,13 +44,13 @@
 		</time>
 		<div id="logo">
 			<a href="{{ route('home') }}">
-				<img src="img/logo.png" alt="Los Torneos" class="logo">
+				<img src="/img/logo.png" alt="Los Torneos" class="logo">
 			</a>
 		</div>
 		<nav class="usuarios {{ Auth::user() ? 'subir' : '' }}" >
 				@if(Auth::user())
 					<div class="usuario">
-						<img src="{{ asset('storage/img/avatar/' . Auth::user()->avatar) }}" alt="Foto Perfil" class="foto-usuario" />
+						<img src="{{ asset('/storage/img/avatar/' . Auth::user()->avatar) }}" alt="Foto Perfil" class="foto-usuario" />
 						<h4>{{ Auth::user()->username }}</h4>
 					</div>
 					<ul>
@@ -81,7 +81,7 @@
 		</div>
 		<div class="disegnosis">
 			<a href="https://www.disegnosis.com.ar" target="_blank">
-				<img src="img/disegnosis.png" alt="Diseño Web DISEGNOSIS - Webmaster Diseño de Páginas / Sitios Web. Servicios de Hosting.">
+				<img src="/img/disegnosis.png" alt="Diseño Web DISEGNOSIS - Webmaster Diseño de Páginas / Sitios Web. Servicios de Hosting.">
 			</a>
 		</div>
 	</footer>

@@ -73,7 +73,7 @@ class AdminPostsController extends Controller
         
         if($post->save()) {
             if($request->tags) {
-                $post->tags()->toggle($request->tags);
+                $post->tags()->sync($request->tags);
             }
             Flash::success("La Noticia $post->title se ha creado con éxito.");
             return redirect()->route('admin.posts');
@@ -146,6 +146,9 @@ class AdminPostsController extends Controller
         }
         
         if($post->save()) {
+            if($request->tags) {
+                $post->tags()->sync($request->tags);
+            }
             Flash::success("La Noticia $post->title se ha actualizado con éxito.");
             return redirect()->route('admin.posts');
         } else {
@@ -163,6 +166,7 @@ class AdminPostsController extends Controller
     public function destroy($id)
     {
         Post::findOrFail($id)->delete();
+        Flash::error('Se ha borrado la Noticia.');
         return back();
     }
 
@@ -182,7 +186,6 @@ class AdminPostsController extends Controller
             $post->published_at = Carbon::now();
             $post->save();
         }
-        $posts = Post::with('category', 'user')->orderBy('created_at', 'desc')->paginate(15);
-        return view('admin.posts.index', compact('posts'));
+        return back();
     }
 }

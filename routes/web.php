@@ -18,6 +18,10 @@ Route::get('/posts', 'PostsController@index')->name('posts');
 Route::get('/posts/search', 'PostsController@search')->name('posts.search');
 Route::get('/posts/{slug}', 'PostsController@show')->name('posts.show');
 
+Route::get('/categories/{slug}', 'CategoriesController@show')->name('categories.show');
+Route::get('/tags/{slug}', 'TagsController@show')->name('tags.show');
+Route::get('/games/{slug}', 'GamesController@show')->name('games.show');
+
 
 Route::get('/my-account', 'UsersController@show')->name('my-account')->middleware('auth');
 

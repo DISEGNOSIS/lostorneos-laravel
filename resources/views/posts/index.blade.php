@@ -20,7 +20,7 @@
                             <a href="{{ route('posts.show', $post->slug) }}">{{ $post->title }}</a>
                         </h2>
                         <div class="blog-post-info">
-                            <span class="blog-post-category"><a href="{{ route('posts.show', $post->slug) }}">{{ $post->category->name }}</a></span>
+                            <span class="blog-post-category"><a href="{{ route('categories.show', $post->category->slug) }}">{{ $post->category->name }}</a></span>
                             <span class="blog-post-meta">
                                 {{ $post->user->username }} ::
                                 {{ \Carbon\Carbon::parse($post->published_at)->diffForHumans() }}
@@ -33,6 +33,13 @@
                         @endif
                         <div class="fr-view">
                             {!! str_limit(strip_tags($post->content), 333) !!}
+                        </div>
+                        <div class="blog-post-footer">
+                            <div class="tags">
+                                @foreach($post->tags as $tag)
+                                    <p class="blog-post-tag"><a href="{{ route('tags.show', $tag->slug) }}">{{ $tag->name }}</a></p>
+                                @endforeach
+                            </div>
                             @if(strlen(strip_tags($post->content)) > 333)                        
                                 <a href="{{ route('posts.show', $post->slug) }}" class="read-more">
                                     <i class="fas fa-arrow-alt-circle-right"></i>

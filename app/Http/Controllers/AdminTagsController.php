@@ -50,7 +50,8 @@ class AdminTagsController extends Controller
      */
     public function show($id)
     {
-        return view('admin.tags.show');
+        $tag = Tag::findOrFail($id);
+        return view('admin.tags.show', compact('tag'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -73,8 +74,7 @@ class AdminTagsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'display_name' => 'required|max:255',
-            'description' => 'sometimes|max:255'
+            'name' => 'required|string|max:255',
           ]);
           $tag = Tag::findOrFail($id);
           $tag->name = $request->name;

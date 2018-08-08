@@ -16,32 +16,23 @@
             <form id="admin-roles-edit" action="{{ route('admin.roles.update', $role->id) }}" method="POST">
                 @csrf
                 @method('PUT')
+                @if($errors->has('display_name'))
+                    <p class="error" role="alert">
+                        <strong>{{ $errors->first('display_name') }}</strong>
+                    </p>
+                @endif
                 <div class="campo">
-                    <label for="display_name">Nombre:</label>
+                    <label for="display_name">Título:</label>
                     <input id="display_name" type="text" class="{{ $errors->has('display_name') ? ' is-invalid' : '' }}" name="display_name" value="{{ $role->display_name ? $role->display_name : old('display_name') }}" placeholder="Título" autofocus/>
-                    @if($errors->has('display_name'))
-                        <span class="error" role="alert">
-                            <strong>{{ $errors->first('display_name') }}</strong>
-                        </span>
-                    @endif
                 </div>
-                <div class="campo">
-                    <label for="name">Slug:</label>
-                    <input id="name" type="text" class="{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $role->name ? $role->name : old('name') }}" placeholder="Slug" autofocus disabled/>
-                    @if($errors->has('name'))
-                        <span class="error" role="alert">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                    @endif
-                </div>
+                @if($errors->has('description'))
+                    <p class="error" role="alert">
+                        <strong>{{ $errors->first('description') }}</strong>
+                    </p>
+                @endif
                 <div class="campo">
                     <label for="description">Descripción:</label>
                     <textarea id="description" class="{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" placeholder="Description" autofocus>{{ $role->description ? $role->description : old('description') }}</textarea>
-                    @if($errors->has('description'))
-                        <span class="error" role="alert">
-                            <strong>{{ $errors->first('description') }}</strong>
-                        </span>
-                    @endif
                 </div>
                 <h2>Permisos:</h2>
                 <div class="datos-checkbox">

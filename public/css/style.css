@@ -716,6 +716,12 @@ footer time {
 	text-align: justify;
 }
 
+.show {
+	width: 86%;
+	margin: 13px auto;
+	padding: .6% 2%;
+}
+
 .blog-post .fr-view img:nth-of-type(odd) {
 	float: left;
 	margin-right: 13px;
@@ -783,6 +789,33 @@ footer time {
 	margin: -6px 0 6px;
 	height: 33px;
 	line-height: 33px;
+}
+
+.blog-post-footer {
+	display: flex;
+	justify-content: space-between;
+}
+
+.tags {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.blog-post-tag {
+	background: steelblue;
+	text-transform: uppercase;
+	font-size: .8em;
+	letter-spacing: .06em;
+	text-shadow: 1px 1px 2px #000;
+	padding: 0 6px;
+	height: 26px;
+	line-height: 26px;
+	margin-right: 6px;
+}
+
+.blog-post-tag a:hover {
+	color: #000;
+	text-shadow: 1px 1px 2px #fff;
 }
 
 .blog-post-meta {
