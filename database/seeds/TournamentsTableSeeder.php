@@ -31,7 +31,7 @@ class TournamentsTableSeeder extends Seeder
         ]);
 
         DB::table('tournaments')->insert([
-            'name' => 'ESL Masters Espana - Season 3',
+            'name' => 'ESL Masters España - Season 3',
             'slug' => 'esl-masters-espana',
             'information' => '<p>ESL Spain, who recently teamed up with Movistar—a branch of Telefonica—, one of the biggest telecommunications companies in the world, announced its new CS:GO League at the company’s flagship store in Madrid. The league will have a 22,100€ prize pool as well as money set aside to help the teams during the LAN finals.</p>',
             'image' => 'esl-masters-espana.png',
@@ -81,7 +81,7 @@ class TournamentsTableSeeder extends Seeder
 
         $tournaments = Tournament::all();
         foreach($tournaments as $tournament) {
-            for($i = 1; $i < 4; $i++) {
+            for($i = 1; $i < 7; $i++) {
                 $tournament->teams()->attach([rand(1, 7)]);
             }
             $tournament->tags()->sync([rand(1, 4)]);

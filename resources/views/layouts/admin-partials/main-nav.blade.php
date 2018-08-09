@@ -1,6 +1,6 @@
 <a href="#" class="toggle-nav">
     <span class="ion-navicon-round">
-        <img src="img/nav-icon.png" alt="Menú"/>
+        <img src="/img/nav-icon.png" alt="Menú"/>
     </span>
 </a>
 <nav class="main-nav">

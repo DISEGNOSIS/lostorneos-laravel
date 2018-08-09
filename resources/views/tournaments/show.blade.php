@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-    Los Torneos - {{ $post->title }}
+    Los Torneos - {{ $tournament->name }}
 @endsection
 
 @section('head')
@@ -11,52 +11,57 @@
 
 @section('content')
 	<article>
-        <div class="blog-main">
-            <div class="blog-post show">
-                <h2 class="blog-post-title">
-                    <a href="/posts/{{ $post->slug }}">{{ $post->title }}</a>
+        <div class="tournament-main">
+            <div class="tournament show">
+                <h2 class="tournament-title">
+                    <a href="{{ route('tournaments.show', $tournament->slug) }}">{{ $tournament->name }}</a>
                 </h2>
-                <div class="blog-post-info">
-                    <span class="blog-post-category"><a href="{{ route('posts.show', $post->slug) }}">{{ $post->category->name }}</a></span>
-                    <span class="blog-post-meta">
-                        {{ $post->user->username }} ::
-                        {{ \Carbon\Carbon::parse($post->published_at)->diffForHumans() }}
-                    </span>
+                <div class="tournament-info">
+                    <span class="tournament-game"><a href="{{ route('tournaments.games.show', $tournament->game->slug) }}">{{ $tournament->game->name }}</a></span>
+                    <span><img src="{{ asset('img/flags/' . $tournament->country->flag) }}" class="image" alt="{{ $tournament->country->name }}"/></span>
                 </div>
-                @if($post->image)
-                    <div class="centrar">
-                        <img src="{{ asset('storage/img/posts/' . $post->image) }}" class="image" alt="{{ $post->title }}"/>
-                    </div>
+                <div class="tags">
+                    @foreach($tournament->tags as $tag)
+                        <p class="tournament-tag"><a href="{{ route('tournaments.tags.show', $tag->slug) }}">{{ $tag->name }}</a></p>
+                    @endforeach
+                </div>
+                <div class="dates">
+                    @if($tournament->prize)
+                        <div class="tournament-price">
+                            <i class="fas fa-award"></i>&nbsp; ${{ $tournament->prize }}
+                        </div>
+                    @endif
+                    <p class="tournament-meta"><i class="far fa-calendar-alt"></i>&nbsp; 
+                        Inicio: {{ \Carbon\Carbon::parse($tournament->start)->toDateTimeString() }}
+                    </p>
+                    <p class="tournament-meta"><i class="far fa-calendar-alt"></i>&nbsp; 
+                        Fin: {{ \Carbon\Carbon::parse($tournament->end)->toDateTimeString() }}
+                    </p>
+                </div>
+                @if($tournament->image)
+                <div class="centrar">
+                    <img src="{{ asset('storage/img/tournaments/' . $tournament->image) }}" class="image" alt="{{ $tournament->name }}"/>
+                </div>
                 @endif
                 <div class="fr-view">
-                    {!! $post->content !!}
+                    {!! $tournament->information !!}
+                </div>
+                <div class="tournament-teams">
+                    <h3>EQUIPOS:</h3>
+                    <div class="tournament-teams-data">
+                    @foreach($tournament->teams as $team)
+                        <div class="tournament-team-data">
+                            <h2><a href="{{ route('teams.show', $team->name) }}">{{ $team->display_name }}</a></h2>
+                            <img src="{{ asset('storage/img/teams/' . $team->image) }}" class="image" alt="{{ $team->display_name }}"/>
+                            <div class="tournament-footer">
+                                <span class="flag"><img src="{{ asset('img/flags/' . $team->country->flag) }}" class="image" alt="{{ $team->country->name }}"/></span>
+                                <p><i class="fas fa-gamepad"></i>&nbsp; {{ $team->score }}</p>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
-            {{-- <hr>
-            <div class="comments">
-                <ul class="list-group">
-                    @foreach($post->comments as $comment)
-                        <li class="list-group-item">
-                            <i>{{ $comment->created_at->diffForHumans() }}:&nbsp; </i>
-                            {{ $comment->body }}
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-            <hr>
-            <div class="card">
-                <div class="card-block">
-                    <form method="POST" action="/posts/{{ $post->id }}/comments">
-                        @csrf
-                        <div class="form-group">
-                            <textarea name="body" placeholder="Your comment here..." class="form-control" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Comentar</button>
-                        </div>
-                    </form>
-                </div>
-            </div> --}}
         </div>
 	</article>
 @endsection

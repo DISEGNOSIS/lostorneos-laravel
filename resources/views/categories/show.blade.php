@@ -28,7 +28,11 @@
                         </div>
                         @if($post->image)
                             <div class="centrar">
-                                <img src="{{ asset('storage/img/posts/' . $post->image) }}" class="image" alt="{{ $post->title }}"/>
+                                <a href="{{ route('posts.show', $post->slug) }}">
+                                    <a href="{{ route('posts.show', $post->slug) }}">
+                                        <img src="{{ asset('storage/img/posts/' . $post->image) }}" class="image" alt="{{ $post->title }}"/>
+                                    </a>
+                                </a>
                             </div>
                         @endif
                         <div class="fr-view">

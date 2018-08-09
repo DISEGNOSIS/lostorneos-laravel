@@ -603,7 +603,7 @@ footer time {
 	margin:0 13px 13px 0;
 }
 
-.page-item:hover {
+.page-item:hover, .pagination li.active {
 	background: #00fa6b;
 }
 
@@ -614,7 +614,7 @@ footer time {
 	font-weight: bold;
 }
 
-.page-link:hover {
+.page-link:hover, .pagination li.active .page-link {
 	color: #000;
 }
 
@@ -718,12 +718,6 @@ footer time {
 	-webkit-box-shadow: 3px 3px 6px #000;
 	box-shadow: 3px 3px 6px #000;
 	text-align: justify;
-}
-
-.show {
-	width: 86%;
-	margin: 13px auto;
-	padding: .6% 2%;
 }
 
 .blog-post .fr-view img:nth-of-type(odd) {
@@ -990,6 +984,49 @@ footer time {
 	color: #FFA933;
 	text-shadow: 1px 1px 2px #000;
 	margin: 1px auto 6px;
+}
+
+.tournament-teams {
+	display: flex;
+	flex-flow: column wrap;
+}
+
+.tournament-teams-data {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+}
+
+.tournament-team-data {
+	display: flex;
+	justify-content: space-around;
+	align-content: center;
+	flex-flow: column wrap;
+	width: 30%;
+	background: rgba(0, 0, 0, 0.5);
+	padding: 0 1rem;
+	border-radius: 0 13px;
+	-moz-box-shadow: 3px 3px 6px #000;
+	-webkit-box-shadow: 3px 3px 6px #000;
+	box-shadow: 3px 3px 6px #000;
+	margin-bottom: 33px;
+}
+
+.flag {
+	width: 100%;
+	max-width: 33px;
+	height: auto;
+	margin-top: 15px;
+}
+
+.show {
+	width: 86%;
+	margin: 13px auto;
+	padding: .6% 2%;
+}
+
+.dates {
+	float: right;
 }
 
 .centrar {

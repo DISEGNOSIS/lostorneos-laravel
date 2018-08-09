@@ -6,6 +6,7 @@ use Laratrust\Models\LaratrustTeam;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
+
 class Team extends LaratrustTeam
 {
     protected $guarded = [];
@@ -22,6 +23,11 @@ class Team extends LaratrustTeam
 
     public function tournaments() {
         return $this->belongsToMany('App\Tournament')->withTimestamps();
+    }
+
+    public function users() {
+        return $this->belongsToMany('App\User', 'role_user')
+             ->withPivot('team_id');
     }
 
 }

@@ -18,13 +18,8 @@ class TournamentsController extends Controller
     }
 
     public function show($slug) {
-        $post = Post::where('slug', 'LIKE', $slug)->first();
-        if($post->active) {
-            return view('posts.show', compact('post'));
-        } else {
-            Flash::error('El Post no se encuentra activado.');
-            return back();
-        }
+        $tournament = Tournament::with('country', 'game', 'teams', 'tags')->where('slug', 'LIKE', $slug)->first();
+        return view('tournaments.show', compact('tournament'));
     }
 
 }

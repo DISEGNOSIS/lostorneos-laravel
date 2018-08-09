@@ -35,18 +35,20 @@ class User extends Authenticatable
         return $this->hasMany('App\Post');
     }
 
-    public function roles()
-	{
+    public function roles() {
 		return $this->belongsToMany('App\Role');
 	}
 
-	public function permissions()
-	{
+	public function permissions() {
 		return $this->belongsToMany('App\Permission');
 	}
 
-	public function getRoleListAttribute()
-	{
+	public function getRoleListAttribute() {
 		return $this->roles->pluck('id')->toArray();
-	}
+    }
+    
+    public function teams() {
+        return $this->belongsToMany('App\Team', 'role_user')
+             ->withPivot('user_id');
+    }
 }

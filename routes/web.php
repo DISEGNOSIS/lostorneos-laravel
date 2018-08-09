@@ -20,6 +20,7 @@ Route::get('/posts/{slug}', 'PostsController@show')->name('posts.show');
 Route::get('/posts/tags/{slug}', 'TagsController@posts')->name('posts.tags.show');
 
 Route::get('/categories/{slug}', 'CategoriesController@show')->name('categories.show');
+
 Route::get('/games/{slug}', 'GamesController@show')->name('games.show');
 
 Route::get('/tournaments', 'TournamentsController@index')->name('tournaments');
@@ -28,7 +29,8 @@ Route::get('/tournaments/tags/{slug}', 'TagsController@tournaments')->name('tour
 Route::get('/tournaments/games/{slug}', 'GamesController@tournaments')->name('tournaments.games.show');
 Route::get('/tournaments/teams/{slug}', 'TeamsController@tournaments')->name('tournaments.teams.show');
 
-Route::get('/teams/{slug}', 'TemasController@show')->name('teams.show');
+Route::get('/teams', 'TeamsController@index')->name('teams');
+Route::get('/teams/{slug}', 'TeamsController@show')->name('teams.show');
 
 Route::get('/my-account', 'UsersController@show')->name('my-account')->middleware('auth');
 

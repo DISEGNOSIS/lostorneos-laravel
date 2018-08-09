@@ -35,7 +35,6 @@
                         @endif
                         <div class="fr-view">
                             {!! str_limit(strip_tags($tournament->information), 200) !!}
-                        
                         </div>
                         <div class="tournament-footer">
                             <div class="tags">
@@ -63,6 +62,6 @@
     </div>
 @endsection
 
-@section('scripts')
+{{-- @section('scripts')
     <script src="{{ asset('js/ajax-posts.js') }}"></script>
-@endsection
+@endsection --}}

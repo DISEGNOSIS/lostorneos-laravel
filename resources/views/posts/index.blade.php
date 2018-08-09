@@ -28,7 +28,9 @@
                         </div>
                         @if($post->image)
                             <div class="centrar">
-                                <img src="{{ asset('storage/img/posts/' . $post->image) }}" class="image" alt="{{ $post->title }}"/>
+                                <a href="{{ route('posts.show', $post->slug) }}">
+                                    <img src="{{ asset('storage/img/posts/' . $post->image) }}" class="image" alt="{{ $post->title }}"/>
+                                </a>
                             </div>
                         @endif
                         <div class="fr-view">
@@ -60,6 +62,6 @@
     </div>
 @endsection
 
-@section('scripts')
+{{-- @section('scripts')
     <script src="{{ asset('js/ajax-posts.js') }}"></script>
-@endsection
+@endsection --}}
