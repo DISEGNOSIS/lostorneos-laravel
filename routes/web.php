@@ -24,10 +24,13 @@ Route::get('/categories/{slug}', 'CategoriesController@show')->name('categories.
 Route::get('/games/{slug}', 'GamesController@show')->name('games.show');
 
 Route::get('/tournaments', 'TournamentsController@index')->name('tournaments');
-Route::get('/tournaments/{slug}', 'TournamentsController@show')->name('tournaments.show');
+Route::get('/tournaments/create', 'TournamentsController@create')->name('tournaments.create')->middleware('auth');
+Route::post('/tournaments/create', 'TournamentsController@store')->name('tournaments.store')->middleware('auth');
 Route::get('/tournaments/tags/{slug}', 'TagsController@tournaments')->name('tournaments.tags.show');
 Route::get('/tournaments/games/{slug}', 'GamesController@tournaments')->name('tournaments.games.show');
 Route::get('/tournaments/teams/{slug}', 'TeamsController@tournaments')->name('tournaments.teams.show');
+Route::get('/tournaments/user/{id}', 'TournamentsController@user')->name('tournaments.user')->middleware('auth');
+Route::get('/tournaments/{slug}', 'TournamentsController@show')->name('tournaments.show');
 
 Route::get('/teams', 'TeamsController@index')->name('teams');
 Route::get('/teams/{slug}', 'TeamsController@show')->name('teams.show');

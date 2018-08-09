@@ -1,12 +1,14 @@
 (function(){
 	const dropdownButtons = document.getElementsByClassName('dropdown-button');
+	const toggleNav = document.querySelector('.toggle-nav');
+
+	toggleNav.addEventListener('click', toggle);
 
 	dropdownButtons.forEach(function(dropdownButton) {
 		dropdownButton.addEventListener('mouseover', show);
 	});
 
 	function show() {
-		console.log(this);
 		this.classList.toggle('activo');
 		const submenu = this.nextElementSibling;
 		console.log(submenu)
@@ -20,14 +22,8 @@
 		}
 	}
 
-})();
+	function toggle() {
+		$(this).next().slideToggle();
+	}
 
-// JavaScript Document
-//window.onload(function() {
-//	"use strict";
-//	$(".main-nav").css("display", "none");
-//});
-$(".toggle-nav").click(function() {
-	"use strict";
-	$(this).next().slideToggle();
-});
+})();

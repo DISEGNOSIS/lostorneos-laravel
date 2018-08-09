@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +20,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('users/search', function (Request $request) {
-    $users = \App\User::with('country', 'roles')->where('username', 'LIKE', '%'. $request->input('query') .'%')->get();
+    $users = User::with('country', 'roles')->where('username', 'LIKE', '%'. $request->input('query') .'%')->get();
     foreach ($users as $value) {
         $value->country->flag;
         $value->roles[0]->display_name;
     }
     return $users;
+});
+
+Route::get('posts/search', function (Request $request) {
+    $posts = Post::with('category', 'user')->where('title', 'LIKE', '%'. $request->input('query') .'%')->get();
+    foreach ($posts as $value) {
+        $value->category->id;
+        $value->category->name;
+        $value->user->username;
+    }
+    return $posts;
 });

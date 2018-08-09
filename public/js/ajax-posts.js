@@ -25,45 +25,30 @@
 					var response = JSON.parse(this.responseText);
 				}
 				if(!response.error) {
-					data = response.data;
-					data.forEach(function(post) {
-						result += '<tr>';
-						result += '<td><a href="posts/' + post.id + '/active"><i class="fas {{ ' + (post.active ? 'fa-check' : 'fa-times') + ' }}"></i></a></td>';
-						result += '<td>' + post.id + '</td>';
-						result += '<td><a href="posts/' + post.id + '">' + (post.title ? post.title : '') + '</a></td>';
-						result += '<td><a href="categories/' + post.category.id + '">' + post.category.name + '</a></td>';
-						result += '<td>' + post.user.name + '</td>';
-						result += '<td>' + post.published_at + '</td>';
-						result += '<td>' + post.created_at + '</td>';
-						result += '<td><a class="edit" href="posts/' + post.id + '/edit"><i class="fas fa-edit"></i></a></td>';
-						result += '<td><form action="posts/' + post.id + '" method="POST">'
-						/* result += "@csrf @method('DELETE')"; */
-						result += '<button type="submit" class="delete" href=""><i class="fas fa-trash-alt"></i></button></form>';
-						result += '</tr>';
-					});
-					tbody.innerHTML = result;
-					console.log(response);
-					if(data.length <= 15) {
+					if(response.length > 0) {
+						response.forEach(function(post) {
+							result += '<tr>';
+							result += '<td><a href="posts/' + post.id + '/active"><i class="fas {{ ' + (post.active ? 'fa-check' : 'fa-times') + ' }}"></i></a></td>';
+							result += '<td>' + post.id + '</td>';
+							result += '<td><a href="posts/' + post.id + '">' + (post.title ? post.title : '') + '</a></td>';
+							result += '<td><a href="categories/' + post.category.id + '">' + post.category.name + '</a></td>';
+							result += '<td>' + post.user.username + '</td>';
+							result += '<td>' + post.published_at + '</td>';
+							result += '<td>' + post.created_at + '</td>';
+							result += '<td><a class="edit" href="posts/' + post.id + '/edit"><i class="fas fa-edit"></i></a></td>';
+							result += '<td><form action="posts/' + post.id + '" method="POST">'
+							result += '<input name="_token" value="p21xbEzrsvW60E4yji7AX8uRptXjL9Fif48yS7z9" type="hidden"><input name="_method" value="DELETE" type="hidden">';
+							result += '<button type="submit" class="delete" href=""><i class="fas fa-trash-alt"></i></button></form>';
+							result += '</tr>';
+						});
+						tbody.innerHTML = result;
 						pagination.style.display = 'none';
-					}
-
-
-
-						/* result += '<td><a href="posts/' + user.id + '/active"><i class="fas {{ ' + (user.active ? 'fa-check' : 'fa-times') + ' }}"></i></a></td>';
-						result += '<td>' + user.id + '</td>';
-						result += '<td><a href="users/' + user.id + '">' + user.name ? user.name : '' + '</a></td>';
-						result += '<td><a href="users/' + user.id + '">' + user.username + '</a></td>';
-						result += '<td>' + user.email + '</td>';
-						result += '<td><img src="/img/flags/{{ ' + user.country_id ? user.country_id.flag.toLowerCase() : '' + ' }}" alt="{{ ' + user.country_id ? user.country_id.name : '' + ' }}" class="flag"/>' + '</td>';
-						result += '<td>{{ \Carbon\Carbon::parse($user->created_at)->diffForHumans() }}</td>'; */
-
-
-					
+					} else {
+						tbody.innerHTML = '<tr><td colspan="11"><h2>No se han encontrado Noticias.</h2></td></tr>';
+					}			
 				}
-
 			}
-			/* xmlhttp.open("GET","/admin/users/search",true); */
-			xmlhttp.open("GET","/admin/posts/search?query="+query,true);
+			xmlhttp.open("GET","/api/posts/search?query="+query,true);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlhttp.send();
 		} else if(query == '') {

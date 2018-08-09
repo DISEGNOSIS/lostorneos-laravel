@@ -90,7 +90,7 @@ class TeamsTableSeeder extends Seeder
         DB::table('teams')->insert([
             'display_name' => 'Coscu Army',
             'name' => 'coscu-army',
-            'description' => '<h3>CSGO: Campeones de la Liga Principal de abril.</h3<h3>LOL: Campeones de la AORUS League Cono Sur Tournament 1 y 2, y del Circuito Nacional Argentina. Quedaron a un paso de subir a la Copa Latinoamérica Sur.</h3><h2>Fortnite: Campeones de la primera edición de la Fortnite Master Series de Argentina.</h2><p>Actualmente cuentan con: LOL, CSGO y Fortnite.</p><p>Objetivo:  "Seguir cosechando grandes logros como lo venimos haciendo en este pequeño lapso y llegar a ser la mejor multigaming del país, objetivo que sin dudas creemos que podemos lograr. Creemos que, mas que una organización somos una familia".</p>',
+            'description' => '<h3>CSGO: Campeones de la Liga Principal de abril.</h3<h3>LOL: Campeones de la AORUS League Cono Sur Tournament 1 y 2 y del Circuito Nacional Argentina. Quedaron a un paso de subir a la Copa Latinoamérica Sur.</h3><h2>Fortnite: Campeones de la primera edición de la Fortnite Master Series de Argentina.</h2><p>Actualmente cuentan con: LOL, CSGO y Fortnite.</p><p>Objetivo: "Seguir cosechando grandes logros como lo venimos haciendo en este pequeño lapso y llegar a ser la mejor multigaming del país, objetivo que sin dudas creemos que podemos lograr. Creemos que, mas que una organización somos una familia".</p>',
             'image' => 'coscu-army.png',
             'score' => rand(1500, 13000),
             'country_id' => 10,

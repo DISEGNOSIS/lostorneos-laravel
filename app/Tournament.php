@@ -31,4 +31,8 @@ class Tournament extends Model
     public function country() {
         return $this->belongsTo('App\Country');
     }
+
+    public function owner() {
+        return $this->belongsTo('App\User');
+    }
 }

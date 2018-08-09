@@ -170,12 +170,6 @@ class AdminPostsController extends Controller
         return back();
     }
 
-    public function search(Request $request) {
-        $query = $request->input('query');
-        $posts = Post::with('category', 'user')->where('title', 'LIKE', '%'. $query .'%')->orderBy('created_at', 'desc')->paginate(15);
-        return $posts;
-    }
-
     public function active($id) {
         $post = Post::findOrFail($id);
         if($post->active) {

@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-    Los Torneos - Torneos.
+    Los Torneos - Mis Torneos.
 @endsection
 
 @section('head')
@@ -11,7 +11,7 @@
 
 @section('content')
 	<article>
-        <h1 class="titulo">Torneos</h1>
+        <h1 class="titulo">Mis Torneos</h1>
         @if($tournaments->count() > 0)
             <div class="tournament-main">
                 @foreach($tournaments as $tournament)

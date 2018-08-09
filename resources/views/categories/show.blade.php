@@ -41,7 +41,7 @@
                         <div class="blog-post-footer">
                             <div class="tags">
                                 @foreach($post->tags as $tag)
-                                    <p class="blog-post-tag"><a href="{{ route('tags.show', $tag->slug) }}">{{ $tag->name }}</a></p>
+                                    <p class="blog-post-tag"><a href="{{ route('posts.tags.show', $tag->slug) }}">{{ $tag->name }}</a></p>
                                 @endforeach
                             </div>
                             @if(strlen(strip_tags($post->content)) > 333)                        

@@ -20,29 +20,33 @@
                     <span class="tournament-game"><a href="{{ route('tournaments.games.show', $tournament->game->slug) }}">{{ $tournament->game->name }}</a></span>
                     <span><img src="{{ asset('img/flags/' . $tournament->country->flag) }}" class="image" alt="{{ $tournament->country->name }}"/></span>
                 </div>
-                <div class="tags">
-                    @foreach($tournament->tags as $tag)
-                        <p class="tournament-tag"><a href="{{ route('tournaments.tags.show', $tag->slug) }}">{{ $tag->name }}</a></p>
-                    @endforeach
-                </div>
-                <div class="dates">
-                    @if($tournament->prize)
-                        <div class="tournament-price">
-                            <i class="fas fa-award"></i>&nbsp; ${{ $tournament->prize }}
+                <div class="col-3">
+                    <div class="tags">
+                        @foreach($tournament->tags as $tag)
+                            <p class="tournament-tag"><a href="{{ route('tournaments.tags.show', $tag->slug) }}">{{ $tag->name }}</a></p>
+                        @endforeach
+                    </div>
+                    @if($tournament->image)
+                        <div class="centrar">
+                            <a href="{{ route('tournaments.show', $tournament->slug) }}">
+                                <img src="{{ asset('storage/img/tournaments/' . $tournament->image) }}" class="image" alt="{{ $tournament->name }}"/>
+                            </a>
                         </div>
                     @endif
-                    <p class="tournament-meta"><i class="far fa-calendar-alt"></i>&nbsp; 
-                        Inicio: {{ \Carbon\Carbon::parse($tournament->start)->toDateTimeString() }}
-                    </p>
-                    <p class="tournament-meta"><i class="far fa-calendar-alt"></i>&nbsp; 
-                        Fin: {{ \Carbon\Carbon::parse($tournament->end)->toDateTimeString() }}
-                    </p>
+                    <div class="dates">
+                        @if($tournament->prize)
+                            <div class="tournament-price">
+                                <i class="fas fa-trophy"></i>&nbsp; ${{ $tournament->prize }}
+                            </div>
+                        @endif
+                        <p class="tournament-meta"><i class="far fa-calendar-alt"></i>&nbsp; 
+                            Inicio: {{ \Carbon\Carbon::parse($tournament->start)->format('d-m-Y H:i') }}hs
+                        </p>
+                        <p class="tournament-meta"><i class="far fa-calendar-alt"></i>&nbsp; 
+                            Fin: {{ \Carbon\Carbon::parse($tournament->end)->format('d-m-Y H:i') }}hs
+                        </p>
+                    </div>
                 </div>
-                @if($tournament->image)
-                <div class="centrar">
-                    <img src="{{ asset('storage/img/tournaments/' . $tournament->image) }}" class="image" alt="{{ $tournament->name }}"/>
-                </div>
-                @endif
                 <div class="fr-view">
                     {!! $tournament->information !!}
                 </div>
@@ -52,7 +56,9 @@
                     @foreach($tournament->teams as $team)
                         <div class="tournament-team-data">
                             <h2><a href="{{ route('teams.show', $team->name) }}">{{ $team->display_name }}</a></h2>
-                            <img src="{{ asset('storage/img/teams/' . $team->image) }}" class="image" alt="{{ $team->display_name }}"/>
+                            <a href="{{ route('teams.show', $team->name) }}">
+                                <img src="{{ asset('storage/img/teams/' . $team->image) }}" class="image" alt="{{ $team->display_name }}"/>
+                            </a>
                             <div class="tournament-footer">
                                 <span class="flag"><img src="{{ asset('img/flags/' . $team->country->flag) }}" class="image" alt="{{ $team->country->name }}"/></span>
                                 <p><i class="fas fa-gamepad"></i>&nbsp; {{ $team->score }}</p>

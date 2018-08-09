@@ -34,7 +34,7 @@ class LaratrustSetupTables extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('display_name');
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('image');
             $table->float('score', 10, 2)->nullable();
             $table->unsignedInteger('country_id');
