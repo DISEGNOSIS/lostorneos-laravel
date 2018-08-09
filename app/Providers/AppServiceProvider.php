@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
         setlocale(LC_TIME, 'es_ES.UTF-8');
         // En windows
         setlocale(LC_TIME, 'spanish', 'Spanish_Argentina', 'esp_esp');
+
+        Schema::defaultStringLength(191);
     }
 
     /**
