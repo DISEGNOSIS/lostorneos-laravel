@@ -17,7 +17,7 @@
                 <li class="{{ Nav::isRoute('admin.tags') }}"><a href="{{ route('admin.tags') }}"><i class="fas fa-tags"></i>&nbsp; Tags</a></li>
             </ul>
         </li>
-        <li class="{{-- {{ Nav::isRoute('admin.teams') }} --}}"><a href="{{-- {{  route('admin.teams') }} --}}"><i class="fas fa-users-cog"></i>&nbsp; Equipos</a></li>
-        <li class="{{-- {{ Nav::isRoute('admin.matches') }} --}}"><a href="{{-- {{  route('admin.matches') }} --}}"><i class="fas fa-users-cog"></i>&nbsp; Partidos</a></li>
+        <li class="{{-- {{ Nav::isRoute('admin.teams') }} --}}"><a href="{{ route('teams') }}"><i class="fas fa-users-cog"></i>&nbsp; Equipos</a></li>
+        <li class="{{-- {{ Nav::isRoute('admin.matches') }} --}}"><a href="{{ route('tournaments') }}"><i class="fas fa-users-cog"></i>&nbsp; Partidos</a></li>
     </ul>
 </nav>

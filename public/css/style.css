@@ -1266,7 +1266,7 @@ footer time {
 
 	.tournament {
 		margin: 1%;
-		width: 30%;
+		width: 46%;
 	}
 
 	.blog-post {
@@ -1276,6 +1276,10 @@ footer time {
 
 	.show {
 		width: 94%;
+	}
+
+	#logo {
+		flex: 2;
 	}
 
 }

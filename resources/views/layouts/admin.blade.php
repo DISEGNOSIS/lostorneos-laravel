@@ -43,7 +43,7 @@
 			</div>
 		</time>
 		<div id="logo">
-			<a href="{{ route('admin') }}">
+			<a href="{{ route('home') }}">
 				<img src="/img/logo.png" alt="Los Torneos" class="logo"/>
 			</a>
 		</div>

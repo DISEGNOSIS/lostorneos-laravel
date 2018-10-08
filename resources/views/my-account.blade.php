@@ -20,7 +20,7 @@
                     <div class="datos-usuario">
                         <h2>Usuario: &nbsp; <span>{{ Auth::user()->username }}</span></h2>
                         <h2>e-Mail: &nbsp; <span>{{ Auth::user()->email }}</span></h2>
-                        <h2>País: &nbsp; <span>{{ Auth::user()->country->name }} </span><img src="{{ asset('img/flags/' . Auth::user()->country->flag) }}" alt="{{ Auth::user()->country->name }}"/></h2>
+                        <h2>País: &nbsp; <span>{{ Auth::user()->country->name }} </span><img src="{{ asset('img/flags/' . strtolower(Auth::user()->country->flag)) }}" alt="{{ Auth::user()->country->name }}"/></h2>
                         @if(Auth::user()->score)
                             <h2>Puntuación: <span>&nbsp; {{ Auth::user()->score }}</span> &nbsp;<i class="fas fa-gamepad"></i></h2>
                         @endif
